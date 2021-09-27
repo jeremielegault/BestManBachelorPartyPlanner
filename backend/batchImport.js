@@ -12,7 +12,7 @@ const options = {
   useUnifiedTopology: true,
 };
 
-const dbName = "SlingShotAir";
+const dbName = "BestManBachPlanner";
 
 const { flights, reservations } = require("./data.js");
 

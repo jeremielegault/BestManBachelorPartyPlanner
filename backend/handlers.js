@@ -5,6 +5,8 @@ require("dotenv").config();
 
 const { MONGO_URI } = process.env;
 
+import { Client } from "@googlemaps/google-maps-services-js";
+
 const options = {
   useNewUrlParser: true,
   useUnifiedTopology: true,
