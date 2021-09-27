@@ -1,0 +1,13 @@
+{
+  "name": "bestmanbachelorpartyplanner",
+  "version": "1.0.0",
+  "description": "",
+  "main": "playground.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "@googlemaps/google-maps-services-js": "^3.2.2",
+    "dotenv": "^10.0.0"
+  }
+}
