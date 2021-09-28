@@ -2,16 +2,10 @@
 
 // import the needed node_modules.
 const express = require("express");
+
 const morgan = require("morgan");
-const {
-  getFlights,
-  getFlight,
-  getReservations,
-  addReservations,
-  getSingleReservation,
-  deleteReservation,
-  updateReservation,
-} = require("./handlers");
+
+const { addReservations, getLatLon } = require("./handlers");
 
 express()
   // Below are methods that are included in express(). We chain them for convenience.
@@ -27,22 +21,11 @@ express()
   // Nothing to modify above this line
   // ---------------------------------
   // add new endpoints here 👇
-  //
-  //get all the flights
-  .get("/getflights", getFlights)
-  //get one flight based on id
-  .get("/getflights/seats/:_id", getFlight)
-  // Get the reservations
-  .get("/getreservations", getReservations)
   // Add a reservation
   .post("/addreservations", addReservations)
-  // Get single reservation based on ID
-  .get("/getreservation/:id", getSingleReservation)
-  // Delete single reservation based on ID
-  .delete("/deletereservation/:id", deleteReservation)
-  // Update reservation info
-  .put("/getreservation/:id", updateReservation)
 
+  // Get Lat and Lon of user
+  .get("/getlatlon", getLatLon)
   //
   // add new endpoints here ☝️
   // ---------------------------------
