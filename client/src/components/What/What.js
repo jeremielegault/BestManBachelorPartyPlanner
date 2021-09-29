@@ -17,6 +17,7 @@ const What = () => {
       </select>
       <label>Dietary restrictions?</label>
       <select>
+        <option value="Omnivore">Omnivore</option>
         <option defaultValue="Vegan">Vegan</option>
         <option value="Vegetarian">Vegetarian</option>
       </select>

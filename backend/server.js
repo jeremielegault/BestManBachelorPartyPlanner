@@ -5,7 +5,7 @@ const express = require("express");
 
 const morgan = require("morgan");
 
-const { addReservations, getLatLon } = require("./handlers");
+const { addReservations, getLatLon, getCheapBars } = require("./handlers");
 
 express()
   // Below are methods that are included in express(). We chain them for convenience.
@@ -26,6 +26,10 @@ express()
 
   // Get Lat and Lon of user
   .get("/getlatlon", getLatLon)
+
+  // Get cheap bars close to the user
+  .get("/getCheapBars", getCheapBars)
+
   //
   // add new endpoints here ☝️
   // ---------------------------------

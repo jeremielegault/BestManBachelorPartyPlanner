@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const Homepage = () => {
   return (
@@ -9,7 +10,9 @@ const Homepage = () => {
         Fill out the following pages to generate recommendations based on your
         selections!
       </p>
-      <button>Next</button>
+      <Link to="/where">
+        <button>Next</button>
+      </Link>
     </div>
   );
 };

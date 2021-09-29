@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const Who = () => {
   return (
@@ -15,7 +16,9 @@ const Who = () => {
         </label>
         <input type="submit" value="Submit" />
       </form>
-      <button>Next</button>
+      <Link to="/what">
+        <button>Next</button>
+      </Link>
     </div>
   );
 };

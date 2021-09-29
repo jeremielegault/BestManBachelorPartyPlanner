@@ -28,6 +28,7 @@ export default LoginTitlePage;
 const LoginButtons = styled.div``;
 const Beerhorn = styled.div`
   transition: all 3s;
+  height: 50px;
   &:hover {
     transform: rotate(75deg);
   }

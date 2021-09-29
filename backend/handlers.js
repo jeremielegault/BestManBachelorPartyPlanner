@@ -16,6 +16,7 @@ const assert = require("assert");
 // use this package to generate unique ids: https://www.npmjs.com/package/uuid
 const { v4: uuidv4 } = require("uuid");
 
+// Handler to generate user's location (latitude and longitude)
 const getLatLon = async (req, res) => {
   const latlngreq = {
     method: "POST",
@@ -35,7 +36,25 @@ const getLatLon = async (req, res) => {
     });
 };
 
-// This function adds one reservation
+// Handler to get Night Out Alcohol recommendations CHEAP
+const getCheapBars = async (req, res) => {
+  var axios = require("axios");
+
+  var config = {
+    method: "get",
+    url: "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=45.452492799999995,-73.5936512&radius=15000&type=bar&maxprice=2&key=AIzaSyAHjbhtGrQnSNHas2LvKI2-UOeu0bfT6C0",
+    headers: {},
+  };
+
+  axios(config)
+    .then(function (response) {
+      console.log(JSON.stringify(response.data));
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
+};
+// This function adds one reservation to MongoDB
 const addReservations = async (req, res) => {
   const client = await new MongoClient(MONGO_URI, options);
 
@@ -86,4 +105,5 @@ const addReservations = async (req, res) => {
 module.exports = {
   addReservations,
   getLatLon,
+  getCheapBars,
 };

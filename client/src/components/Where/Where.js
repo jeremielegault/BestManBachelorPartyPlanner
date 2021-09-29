@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
 const Where = () => {
   const [latlon, setLatLon] = useState([]);
@@ -20,7 +21,9 @@ const Where = () => {
       <h1>Where?</h1>
       <p>We use your location to generate results based on your selections!</p>
       <h1>Current location:{latlon}</h1>
-      <button>Next</button>
+      <Link to="/when">
+        <button>Next</button>
+      </Link>
     </div>
   );
 };
