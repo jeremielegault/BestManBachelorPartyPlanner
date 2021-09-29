@@ -38,9 +38,10 @@ function App() {
 }
 
 const Main = styled.div`
+  max-height: 1136px;
+  max-width: 640px;
   display: flex;
-  flex-direction: column;
-  height: 100vh;
-  width: 100%;
+  justify-content: center;
+  text-align: center;
 `;
 export default App;

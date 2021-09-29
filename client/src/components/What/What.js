@@ -4,43 +4,33 @@ const What = () => {
   return (
     <div>
       <h1>What?</h1>
+      <label>What type of activities do you enjoy as a group?</label>
       <select>
-        <label>What type of activities do you enjoy as a group?</label>
-        <option selected value="Athletics">
-          Athletics
-        </option>
+        <option defaultValue="Athletics">Athletics</option>
         <option value="Experience">Experiences</option>
         <option value=" Intellectual">Intellectual</option>
       </select>
+      <label>How do you wish to dine?</label>
       <select>
-        <label>How do you wish to dine?</label>
-        <option selected value="Restaurants">
-          Restaurants
-        </option>
+        <option defaultValue="Restaurants">Restaurants</option>
         <option value="DIY">DIY</option>
       </select>
+      <label>Dietary restrictions?</label>
       <select>
-        <label>Dietary restrictions?</label>
-        <option selected value="Vegan">
-          Vegan
-        </option>
+        <option defaultValue="Vegan">Vegan</option>
         <option value="Vegetarian">Vegetarian</option>
       </select>
+      <label>How would you describe your drinking?</label>
       <select>
-        <label>How would you describe your drinking?</label>
-        <option selected value="None">
-          None
-        </option>
+        <option defaultValue="None">None</option>
         <option value="Moderate">Moderate</option>
         <option value="Heavy">Heavy</option>
       </select>
+      <label>What's your budget?</label>
       <select>
-        <label>What's your budget?</label>
-        <option selected value="$">
-          $
-        </option>
-        <option value="$$">$$</option>
-        <option value="$$$">$$$</option>
+        <option defaultValue="$">$ 100-200 a person</option>
+        <option value="$$">$$ 200-350 a person</option>
+        <option value="$$$">$$$ 350+ a person</option>
       </select>
       <button>Next</button>
     </div>
