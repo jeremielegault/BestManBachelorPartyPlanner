@@ -43,5 +43,7 @@ const Main = styled.div`
   display: flex;
   justify-content: center;
   text-align: center;
+  margin-left: auto;
+  margin-right: auto;
 `;
 export default App;
