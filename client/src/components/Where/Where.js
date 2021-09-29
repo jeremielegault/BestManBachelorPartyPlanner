@@ -17,7 +17,10 @@ const Where = () => {
 
   return (
     <div>
+      <h1>Where?</h1>
+      <p>We use your location to generate results based on your selections!</p>
       <h1>Current location:{latlon}</h1>
+      <button>Next</button>
     </div>
   );
 };
