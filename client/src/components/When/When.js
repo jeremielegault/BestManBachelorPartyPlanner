@@ -1,33 +1,19 @@
-import React, { useState, useReducer } from "react";
+import React, { useState, useReducer, useContext } from "react";
 import DatePicker from "react-datepicker";
 import { Link } from "react-router-dom";
 import "react-datepicker/dist/react-datepicker.css";
-
-const whenInitialState = {
-  start: "",
-  end: "",
-  duration: "",
-};
-function reducer(state, action) {}
+import FormContext from "../Reducers/FormContext";
 
 const When = () => {
-  const [state, dispatch] = useReducer(reducer, { whenInitialState });
-  // Select the dates from the Datepicker
-  const [startDate, setStartDate] = useState(new Date());
+  const {
+    state: { start, end, duration },
+    receiveFormInfoFromForm,
+  } = React.useContext(FormContext);
 
-  const [endDate, setEndDate] = useState(new Date());
+  // Handle all three pieces (start, end, duration) form data in state
+  const [formData, setFormData] = useState({ start, end, duration });
 
-  // Handle the submission of the form to local storage
-  const [formData, setFormData] = useState(whenInitialState);
-
-  // const [selectedFlight, setSelectedFlight] = React.useState(null);
-
-  // const handleChange = (value, name) => {
-  //   setFormData({ ...formData, [name]: value });
-  // };
-
-  console.log("start date", startDate);
-  console.log("end date", endDate);
+  console.log("Form Context!", start, end, duration);
   return (
     <div>
       <h1>When?</h1>
@@ -35,20 +21,20 @@ const When = () => {
 
       <p>Start Date</p>
       <DatePicker
-        selected={startDate}
+        selected={formData.start}
         onChange={(date) => {
-          setStartDate(date);
-          setFormData({ ...formData, start: startDate });
+          // setForm(date);
+          setFormData({ ...formData, start: date });
         }}
       />
       {console.log("Form Data", formData)}
 
       <p>End Date</p>
       <DatePicker
-        selected={endDate}
+        selected={formData.end}
         onChange={(date) => {
-          setEndDate(date);
-          setFormData({ ...formData, end: endDate });
+          // setEndDate(date);
+          setFormData({ ...formData, end: date });
         }}
       />
 
@@ -57,7 +43,8 @@ const When = () => {
         Duration (days):
         <input
           type="number"
-          name="NumGuests"
+          value={formData.duration}
+          name="duration"
           min="0"
           onChange={(event) =>
             setFormData({ ...formData, duration: event.target.value })
@@ -65,8 +52,17 @@ const When = () => {
           placeholder="Select the number of days"
         />
       </label>
+
       <Link to="/who">
-        <button>Next</button>
+        <button
+          onClick={() =>
+            receiveFormInfoFromForm({
+              ...formData,
+            })
+          }
+        >
+          Next
+        </button>
       </Link>
     </div>
   );

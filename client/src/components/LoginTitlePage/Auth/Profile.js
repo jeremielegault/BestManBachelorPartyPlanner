@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 import { useAuth0 } from "@auth0/auth0-react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
+import FormContext from "../../Reducers/FormContext";
 
 const Profile = () => {
   const { user, isAuthenticated } = useAuth0();
@@ -11,6 +12,8 @@ const Profile = () => {
     const userData = user;
     localStorage.setItem("User", JSON.stringify(userData));
   }
+  const { receiveBestManInfo } = React.useContext(FormContext);
+
   return (
     isAuthenticated && (
       <div>
@@ -18,7 +21,15 @@ const Profile = () => {
         <div></div>
         <ProfileText>{user.name}</ProfileText>
         <Link to="/homepage">
-          <button>Next</button>
+          <button
+            onClick={() => {
+              receiveBestManInfo({
+                bestMan: user.name,
+              });
+            }}
+          >
+            Next
+          </button>
         </Link>
       </div>
     )
