@@ -2,9 +2,13 @@ import React from "react";
 
 export const FormContext = React.createContext();
 
+const { v4: uuidv4 } = require("uuid");
+
 const initialState = {
+  _id: uuidv4(),
   bestMan: "",
-  where: "",
+  lat: "",
+  lng: "",
   start: new Date(),
   end: new Date(),
   duration: "",
@@ -22,10 +26,16 @@ function reducer(state, action) {
     case "receive-form-info-from-form": {
       return {
         ...state,
-        where: action.where,
         start: action.start,
         end: action.end,
         duration: action.duration,
+      };
+    }
+    case "receive-lat-long": {
+      return {
+        ...state,
+        lat: action.lat,
+        lng: action.lng,
       };
     }
     case "receive-best-man-info": {
@@ -59,6 +69,13 @@ function reducer(state, action) {
 export const FormProvider = ({ children }) => {
   const [state, dispatch] = React.useReducer(reducer, initialState);
 
+  const receiveLatLong = (data) => {
+    dispatch({
+      type: "receive-lat-long",
+      ...data,
+    });
+  };
+
   const receiveFormInfoFromForm = (data) => {
     dispatch({
       type: "receive-form-info-from-form",
@@ -87,6 +104,24 @@ export const FormProvider = ({ children }) => {
     });
   };
 
+  const handleSubmit = () => {
+    fetch("/addreservations", {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(state),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.status === 201) {
+          console.log("Success!");
+        } else {
+          console.log("Error");
+        }
+      });
+  };
   return (
     <FormContext.Provider
       value={{
@@ -95,6 +130,8 @@ export const FormProvider = ({ children }) => {
         receiveFormInfoFromWho,
         receiveFormInfoFromWhat,
         receiveBestManInfo,
+        receiveLatLong,
+        handleSubmit,
       }}
     >
       {children}

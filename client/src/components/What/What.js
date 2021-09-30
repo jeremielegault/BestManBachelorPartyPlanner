@@ -6,6 +6,7 @@ const What = () => {
   const {
     state: { activity, eat, dietaryRes, drinking, budget },
     receiveFormInfoFromWhat,
+    handleSubmit,
   } = React.useContext(FormContext);
 
   // Handle all three pieces (start, end, duration) form data in state
@@ -28,11 +29,11 @@ const What = () => {
         selected={formData.activity}
         value={formData.activity}
         onChange={(event) => {
-          // setEndDate(date);
           setFormData({ ...formData, activity: event.target.value });
         }}
       >
-        <option defaultValue="Athletics">Athletics</option>
+        <option defaultValue="None"></option>
+        <option value="Athletics">Athletics</option>
         <option value="Experience">Experiences</option>
         <option value=" Intellectual">Intellectual</option>
       </select>
@@ -42,11 +43,11 @@ const What = () => {
         selected={formData.eat}
         value={formData.eat}
         onChange={(event) => {
-          // setEndDate(date);
           setFormData({ ...formData, eat: event.target.value });
         }}
       >
-        <option defaultValue="Restaurants">Restaurants</option>
+        <option defaultValue="None"></option>
+        <option value="Restaurants">Restaurants</option>
         <option value="DIY">DIY</option>
       </select>
 
@@ -55,12 +56,12 @@ const What = () => {
         selected={formData.dietaryRes}
         value={formData.dietaryRes}
         onChange={(event) => {
-          // setEndDate(date);
           setFormData({ ...formData, dietaryRes: event.target.value });
         }}
       >
+        <option defaultValue="None"></option>
         <option value="Omnivore">Omnivore</option>
-        <option defaultValue="Vegan">Vegan</option>
+        <option value="Vegan">Vegan</option>
         <option value="Vegetarian">Vegetarian</option>
       </select>
 
@@ -69,11 +70,12 @@ const What = () => {
         selected={formData.drinking}
         value={formData.drinking}
         onChange={(event) => {
-          // setEndDate(date);
           setFormData({ ...formData, drinking: event.target.value });
         }}
       >
-        <option defaultValue="None">None</option>
+        <option defaultValue="None"></option>
+        <option value="Zero">We don't drink</option>
+        <option value="Light">Light</option>
         <option value="Moderate">Moderate</option>
         <option value="Heavy">Heavy</option>
       </select>
@@ -83,22 +85,23 @@ const What = () => {
         selected={formData.budget}
         value={formData.budget}
         onChange={(event) => {
-          // setEndDate(date);
           setFormData({ ...formData, budget: event.target.value });
         }}
       >
-        <option defaultValue="$">$ 100-200 a person</option>
+        <option defaultValue="None"></option>
+        <option value="$">$ 100-200 a person</option>
         <option value="$$">$$ 200-350 a person</option>
         <option value="$$$">$$$ 350+ a person</option>
       </select>
       {console.log("Form Data", formData)}
       <Link to="/results/:id">
         <button
-          onClick={() =>
+          onClick={() => {
             receiveFormInfoFromWhat({
               ...formData,
-            })
-          }
+            });
+            handleSubmit();
+          }}
         >
           Next
         </button>

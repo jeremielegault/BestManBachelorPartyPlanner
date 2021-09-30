@@ -1,4 +1,5 @@
 "use strict";
+
 const { MongoClient } = require("mongodb");
 
 require("dotenv").config();
@@ -16,15 +17,8 @@ const request = require("request-promise");
 
 const assert = require("assert");
 
-// use this package to generate unique ids: https://www.npmjs.com/package/uuid
 const { v4: uuidv4 } = require("uuid");
 
-// {
-//   "data": {
-//     "lat": 45.4524928,
-//     "lng": -73.5936512
-//   }
-// }
 // Handler to generate user's location (latitude and longitude)
 // const getLatLon = async (req, res) => {
 //   const latlngreq = {
@@ -44,8 +38,6 @@ const { v4: uuidv4 } = require("uuid");
 //       return err.error ? JSON.parse(err.error) : err;
 //     });
 // };
-
-// https://www.w3schools.com/html/tryit.asp?filename=tryhtml5_geolocation GEOLOCATION FROM THE BROWSER
 
 const getLatLon = async (req, res) => {
   getLocationsByLatLon(req.query.lat, req.query.long, res);
@@ -96,38 +88,14 @@ const getCheapBars = async (req, res) => {
 
 // This function adds one reservation to MongoDB
 const addReservations = async (req, res) => {
-  const client = await new MongoClient(MONGO_URI, options);
-
-  await client.connect();
-
-  const db = client.db("SlingShotAir");
-
   try {
-    let seatAvailable = false;
+    const client = new MongoClient(MONGO_URI, options);
 
-    const query = { _id: req.body.flight };
+    await client.connect();
 
-    const availability = await db.collection("singleFlight").findOne(query);
+    const db = client.db("BestManBachPlanner");
 
-    availability.seats.forEach((seat) => {
-      if (seat.isAvailable && seat.id === req.body.seat) {
-        seat.isAvailable = false;
-        seatAvailable = true;
-      }
-    });
-
-    const newValue = { $set: { seats: availability.seats } };
-
-    await db.collection("singleFlight").updateOne(query, newValue);
-
-    if (seatAvailable) {
-      await db.collection("reservations").insertOne(req.body);
-    } else {
-      res.status(400).json({
-        status: 400,
-        message: "error! seat is already reserved",
-      });
-    }
+    await db.collection("fullFormData").insertOne(req.body);
 
     res
       .status(201)
