@@ -9,6 +9,9 @@ const options = {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 };
+
+var axios = require("axios");
+
 const request = require("request-promise");
 
 const assert = require("assert");
@@ -16,29 +19,65 @@ const assert = require("assert");
 // use this package to generate unique ids: https://www.npmjs.com/package/uuid
 const { v4: uuidv4 } = require("uuid");
 
+// {
+//   "data": {
+//     "lat": 45.4524928,
+//     "lng": -73.5936512
+//   }
+// }
 // Handler to generate user's location (latitude and longitude)
-const getLatLon = async (req, res) => {
-  const latlngreq = {
-    method: "POST",
-    uri: "https://www.googleapis.com/geolocation/v1/geolocate?key=AIzaSyAHjbhtGrQnSNHas2LvKI2-UOeu0bfT6C0",
-  };
+// const getLatLon = async (req, res) => {
+//   const latlngreq = {
+//     method: "POST",
+//     uri: "https://www.googleapis.com/geolocation/v1/geolocate?key=AIzaSyAHjbhtGrQnSNHas2LvKI2-UOeu0bfT6C0",
+//   };
 
-  return request(latlngreq)
-    .then((response) => JSON.parse(response))
-    .then((parsedResponse) => {
-      console.log("Parsed Response", parsedResponse);
-      return res.status(201).json({
-        data: parsedResponse.location,
-      });
+//   return request(latlngreq)
+//     .then((response) => JSON.parse(response))
+//     .then((parsedResponse) => {
+//       return getLocationsByLatLon(
+//         parsedResponse.data.lat,
+//         parsedResponse.data.lng
+//       );
+//     })
+//     .catch((err) => {
+//       return err.error ? JSON.parse(err.error) : err;
+//     });
+// };
+
+// https://www.w3schools.com/html/tryit.asp?filename=tryhtml5_geolocation GEOLOCATION FROM THE BROWSER
+
+const getLatLon = async (req, res) => {
+  getLocationsByLatLon(req.query.lat, req.query.long, res);
+};
+
+// Takes in the lat and lon and returns new restaurants closeby
+const getLocationsByLatLon = async (lat, long, res) => {
+  var request = {
+    method: "get",
+    url:
+      "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=" +
+      lat +
+      "," +
+      long +
+      "&radius=15000&type=bar&maxprice=2&key=AIzaSyAHjbhtGrQnSNHas2LvKI2-UOeu0bfT6C0",
+    headers: {},
+  };
+  console.log("Second function");
+  return axios(request)
+    .then(function (response) {
+      console.log("response:", response.data);
+      res.send(response.data);
     })
-    .catch((err) => {
-      return err.error ? JSON.parse(err.error) : err;
+    .catch(function (error) {
+      console.log(error);
     });
 };
 
 // Handler to get Night Out Alcohol recommendations CHEAP
+
 const getCheapBars = async (req, res) => {
-  var axios = require("axios");
+  console.log("It worked");
 
   var config = {
     method: "get",
@@ -46,14 +85,15 @@ const getCheapBars = async (req, res) => {
     headers: {},
   };
 
-  axios(config)
+  return axios(config)
     .then(function (response) {
-      console.log(JSON.stringify(response.data));
+      res.send(response.data);
     })
     .catch(function (error) {
       console.log(error);
     });
 };
+
 // This function adds one reservation to MongoDB
 const addReservations = async (req, res) => {
   const client = await new MongoClient(MONGO_URI, options);

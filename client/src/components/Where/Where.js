@@ -4,6 +4,8 @@ import { Link } from "react-router-dom";
 const Where = () => {
   const [latlon, setLatLon] = useState([]);
 
+  // Get the lcoation here and asend it back to the server
+
   useEffect(() => {
     fetch("/getlatlon")
       .then((res) => res.json())

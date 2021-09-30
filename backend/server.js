@@ -28,7 +28,7 @@ express()
   .get("/getlatlon", getLatLon)
 
   // Get cheap bars close to the user
-  .get("/getCheapBars", getCheapBars)
+  .get("/getcheapbars", getCheapBars)
 
   //
   // add new endpoints here ☝️
