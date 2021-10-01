@@ -5,7 +5,11 @@ const express = require("express");
 
 const morgan = require("morgan");
 
-const { addReservations, getLatLon, getCheapBars } = require("./handlers");
+const {
+  addReservations,
+  getCheapBars,
+  getLocationsByLatLon,
+} = require("./handlers");
 
 express()
   // Below are methods that are included in express(). We chain them for convenience.
@@ -14,6 +18,7 @@ express()
   // This will give us will log more info to the console. see https://www.npmjs.com/package/morgan
   .use(morgan("tiny"))
   .use(express.json())
+  .enable("trust proxy")
 
   // Any requests for static files will go into the public folder
   .use(express.static("public"))
@@ -25,10 +30,13 @@ express()
   .post("/addreservations", addReservations)
 
   // Get Lat and Lon of user
-  .get("/getlatlon", getLatLon)
+  // .get("/getlatlon", getLatLon)
 
   // Get cheap bars close to the user
   .get("/getcheapbars", getCheapBars)
+
+  // Fetch recommendations based  on user input
+  .get("/getlocationsbylatlon/:lat/:long", getLocationsByLatLon)
 
   //
   // add new endpoints here ☝️

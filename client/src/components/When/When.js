@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import styled from "styled-components";
 import DatePicker from "react-datepicker";
 import { Link } from "react-router-dom";
 import "react-datepicker/dist/react-datepicker.css";
@@ -15,7 +16,7 @@ const When = () => {
 
   console.log("Form Context!", start, end, duration);
   return (
-    <div>
+    <WhenWrap>
       <h1>When?</h1>
       <p>Select the date(s)</p>
 
@@ -39,19 +40,21 @@ const When = () => {
       />
 
       {/* User selects the number of days */}
-      <label>
-        Duration (days):
-        <input
-          type="number"
-          value={formData.duration}
-          name="duration"
-          min="0"
-          onChange={(event) =>
-            setFormData({ ...formData, duration: event.target.value })
-          }
-          placeholder="Select the number of days"
-        />
-      </label>
+      <Duration>
+        <label>
+          Duration (days):
+          <input
+            type="number"
+            value={formData.duration}
+            name="duration"
+            min="0"
+            onChange={(event) =>
+              setFormData({ ...formData, duration: event.target.value })
+            }
+            placeholder="Select the number of days"
+          />
+        </label>
+      </Duration>
 
       <Link to="/who">
         <button
@@ -64,8 +67,18 @@ const When = () => {
           Next
         </button>
       </Link>
-    </div>
+    </WhenWrap>
   );
 };
 
+const WhenWrap = styled.div`
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
+
+const Duration = styled.div`
+  padding-top: 20px;
+`;
 export default When;

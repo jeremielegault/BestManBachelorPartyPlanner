@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import styled from "styled-components";
 import FormContext from "../Reducers/FormContext";
 
 const What = () => {
@@ -18,10 +19,10 @@ const What = () => {
     budget,
   });
 
-  console.log("Form Context!", activity, eat, dietaryRes, drinking, budget);
+  // console.log("Form Context!", activity, eat, dietaryRes, drinking, budget);
 
   return (
-    <div>
+    <WhatWrap>
       <h1>What?</h1>
 
       <label>What type of activities do you enjoy as a group?</label>
@@ -37,7 +38,7 @@ const What = () => {
         <option value="Experience">Experiences</option>
         <option value=" Intellectual">Intellectual</option>
       </select>
-
+      <DivLine />
       <label>How do you wish to dine?</label>
       <select
         selected={formData.eat}
@@ -50,7 +51,7 @@ const What = () => {
         <option value="Restaurants">Restaurants</option>
         <option value="DIY">DIY</option>
       </select>
-
+      <DivLine />
       <label>Dietary restrictions?</label>
       <select
         selected={formData.dietaryRes}
@@ -64,7 +65,7 @@ const What = () => {
         <option value="Vegan">Vegan</option>
         <option value="Vegetarian">Vegetarian</option>
       </select>
-
+      <DivLine />
       <label>How would you describe your drinking?</label>
       <select
         selected={formData.drinking}
@@ -79,7 +80,7 @@ const What = () => {
         <option value="Moderate">Moderate</option>
         <option value="Heavy">Heavy</option>
       </select>
-
+      <DivLine />
       <label>What's your budget?</label>
       <select
         selected={formData.budget}
@@ -93,8 +94,9 @@ const What = () => {
         <option value="$$">$$ 200-350 a person</option>
         <option value="$$$">$$$ 350+ a person</option>
       </select>
-      {console.log("Form Data", formData)}
-      <Link to="/results/:id">
+      <DivLine />
+      {/* {console.log("Form Data", formData)} */}
+      <Link to="/confirmation">
         <button
           onClick={() => {
             receiveFormInfoFromWhat({
@@ -106,8 +108,21 @@ const What = () => {
           Next
         </button>
       </Link>
-    </div>
+    </WhatWrap>
   );
 };
+
+const WhatWrap = styled.div`
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
+
+const DivLine = styled.div`
+  border: 1px;
+  margin: 5px 0 5px;
+  width: 500px;
+`;
 
 export default What;

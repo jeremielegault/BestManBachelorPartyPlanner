@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import styled from "styled-components";
 import FormContext from "../Reducers/FormContext";
 // groomName  numGuests
 
@@ -12,7 +13,7 @@ const Who = () => {
   const [formData, setFormData] = useState({ groomName, numGuests });
 
   return (
-    <div>
+    <WhoWrap>
       <h1>Who?</h1>
       <form>
         <label>
@@ -28,6 +29,7 @@ const Who = () => {
           />
           {console.log("Form Data", formData)}
         </label>
+        <DivLine />
         <label>
           Number of guests:
           <input
@@ -52,8 +54,20 @@ const Who = () => {
           Next
         </button>
       </Link>
-    </div>
+    </WhoWrap>
   );
 };
 
+const WhoWrap = styled.div`
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
+
+const DivLine = styled.div`
+  border: 1px;
+  margin: 5px 0 5px;
+  width: 500px;
+`;
 export default Who;

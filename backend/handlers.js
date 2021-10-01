@@ -19,47 +19,24 @@ const assert = require("assert");
 
 const { v4: uuidv4 } = require("uuid");
 
-// Handler to generate user's location (latitude and longitude)
-// const getLatLon = async (req, res) => {
-//   const latlngreq = {
-//     method: "POST",
-//     uri: "https://www.googleapis.com/geolocation/v1/geolocate?key=AIzaSyAHjbhtGrQnSNHas2LvKI2-UOeu0bfT6C0",
-//   };
-
-//   return request(latlngreq)
-//     .then((response) => JSON.parse(response))
-//     .then((parsedResponse) => {
-//       return getLocationsByLatLon(
-//         parsedResponse.data.lat,
-//         parsedResponse.data.lng
-//       );
-//     })
-//     .catch((err) => {
-//       return err.error ? JSON.parse(err.error) : err;
-//     });
-// };
-
-const getLatLon = async (req, res) => {
-  getLocationsByLatLon(req.query.lat, req.query.long, res);
-};
-
 // Takes in the lat and lon and returns new restaurants closeby
-const getLocationsByLatLon = async (lat, long, res) => {
+const getLocationsByLatLon = async (req, res) => {
+  console.log("reqHandler", req.params);
+  // console.log("res", res);
   var request = {
     method: "get",
     url:
       "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=" +
-      lat +
+      req.params.lat +
       "," +
-      long +
+      req.params.long +
       "&radius=15000&type=bar&maxprice=2&key=AIzaSyAHjbhtGrQnSNHas2LvKI2-UOeu0bfT6C0",
     headers: {},
   };
-  console.log("Second function");
   return axios(request)
     .then(function (response) {
-      console.log("response:", response.data);
-      res.send(response.data);
+      // console.log("response locations:", response.data);
+      res.status(200).json({ status: 200, data: response.data });
     })
     .catch(function (error) {
       console.log(error);
@@ -112,6 +89,6 @@ const addReservations = async (req, res) => {
 
 module.exports = {
   addReservations,
-  getLatLon,
   getCheapBars,
+  getLocationsByLatLon,
 };

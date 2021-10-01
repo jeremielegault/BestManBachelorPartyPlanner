@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import styled from "styled-components";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 import Where from "./components/Where/Where";
@@ -7,6 +7,8 @@ import Homepage from "./components/Homepage/Homepage";
 import When from "./components/When/When";
 import Who from "./components/Who/Who";
 import What from "./components/What/What";
+import Confirmation from "./components/Confirmation/Confirmation";
+import Results from "./components/Results/Results";
 
 function App() {
   return (
@@ -30,6 +32,12 @@ function App() {
           </Route>
           <Route exact path="/what">
             <What />
+          </Route>
+          <Route exact path="/confirmation">
+            <Confirmation />
+          </Route>
+          <Route exact path="/results">
+            <Results />
           </Route>
         </Switch>
       </Main>
