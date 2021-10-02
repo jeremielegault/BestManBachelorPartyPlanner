@@ -26,7 +26,7 @@ const What = () => {
       <h1>What?</h1>
 
       <label>What type of activities do you enjoy as a group?</label>
-      <select
+      <DropdownForm
         selected={formData.activity}
         value={formData.activity}
         onChange={(event) => {
@@ -37,10 +37,10 @@ const What = () => {
         <option value="bowling_alley">Athletics</option>
         <option value="casino">Experiences</option>
         <option value="museum">Intellectual</option>
-      </select>
+      </DropdownForm>
       <DivLine />
       <label>How do you wish to dine?</label>
-      <select
+      <DropdownForm
         selected={formData.eat}
         value={formData.eat}
         onChange={(event) => {
@@ -50,10 +50,10 @@ const What = () => {
         <option defaultValue="None"></option>
         <option value="restaurant">Restaurants</option>
         <option value="supermarket">DIY</option>
-      </select>
+      </DropdownForm>
       <DivLine />
       <label>Dietary restrictions?</label>
-      <select
+      <DropdownForm
         selected={formData.dietaryRes}
         value={formData.dietaryRes}
         onChange={(event) => {
@@ -64,10 +64,10 @@ const What = () => {
         <option value="Omnivore">Omnivore</option>
         <option value="Vegan">Vegan</option>
         <option value="Vegetarian">Vegetarian</option>
-      </select>
+      </DropdownForm>
       <DivLine />
       <label>How would you describe your drinking?</label>
-      <select
+      <DropdownForm
         selected={formData.drinking}
         value={formData.drinking}
         onChange={(event) => {
@@ -79,10 +79,10 @@ const What = () => {
         <option value="bar">Light</option>
         <option value="bar">Moderate</option>
         <option value="bar">Heavy</option>
-      </select>
+      </DropdownForm>
       <DivLine />
       <label>What's your budget?</label>
-      <select
+      <DropdownForm
         selected={formData.budget}
         value={formData.budget}
         onChange={(event) => {
@@ -93,11 +93,11 @@ const What = () => {
         <option value="2">$ 100-200 a person</option>
         <option value="3">$$ 200-350 a person</option>
         <option value="4">$$$ 350+ a person</option>
-      </select>
+      </DropdownForm>
       <DivLine />
       {/* {console.log("Form Data", formData)} */}
       <Link to="/confirmation">
-        <button
+        <Button
           onClick={() => {
             receiveFormInfoFromWhat({
               ...formData,
@@ -105,8 +105,8 @@ const What = () => {
             handleSubmit();
           }}
         >
-          Next
-        </button>
+          <h2>Next</h2>
+        </Button>
       </Link>
     </WhatWrap>
   );
@@ -117,12 +117,32 @@ const WhatWrap = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  /* background-color: #84d3fb; */
+  background-color: #bee0ed;
+  /* font-weight: bold; */
 `;
 
 const DivLine = styled.div`
   border: 1px;
   margin: 5px 0 5px;
   width: 500px;
+`;
+
+const DropdownForm = styled.select`
+  /* background-color: #ebab00; */
+  /* background-color: #af87fd; */
+  background-color: #87a1c6;
+  border-radius: 5px;
+  color: white;
+  font-weight: bold;
+`;
+
+const Button = styled.button`
+  /* background-color: #af87fd; */
+  background-color: #ebab00;
+  border: none;
+  border-radius: 5px;
+  color: white;
 `;
 
 export default What;

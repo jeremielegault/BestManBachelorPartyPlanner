@@ -63,7 +63,7 @@ const Results = () => {
   // Use effect to generate Bar list dynamically
   useEffect(() => {
     fetch(
-      `http://localhost:8000/getlocationsbylatlon/${formContext.state.lat}/${formContext.state.lng}/${formContext.state.eat}`,
+      `http://localhost:8000/getlocationsbylatlon/${formContext.state.lat}/${formContext.state.lng}/${formContext.state.drinking}`,
       {
         method: "GET",
         headers: {
