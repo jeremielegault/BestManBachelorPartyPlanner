@@ -5,6 +5,8 @@ const express = require("express");
 
 const morgan = require("morgan");
 
+var cors = require("cors");
+
 const {
   addReservations,
   getCheapBars,
@@ -18,6 +20,7 @@ express()
   // This will give us will log more info to the console. see https://www.npmjs.com/package/morgan
   .use(morgan("tiny"))
   .use(express.json())
+  .use(cors())
   .enable("trust proxy")
 
   // Any requests for static files will go into the public folder
@@ -36,7 +39,7 @@ express()
   .get("/getcheapbars", getCheapBars)
 
   // Fetch recommendations based  on user input
-  .get("/getlocationsbylatlon/:lat/:long", getLocationsByLatLon)
+  .get("/getlocationsbylatlon/:lat/:long/:type", getLocationsByLatLon)
 
   //
   // add new endpoints here ☝️
