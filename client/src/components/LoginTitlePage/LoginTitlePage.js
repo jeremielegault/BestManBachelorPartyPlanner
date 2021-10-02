@@ -1,5 +1,5 @@
 import React from "react";
-import { GiBeerHorn } from "react-icons/gi";
+import { GiBowTie } from "react-icons/gi";
 import styled from "styled-components";
 import LoginButton from "./Auth/LoginButton";
 import LogoutButton from "./Auth/LogoutButton";
@@ -12,7 +12,7 @@ const LoginTitlePage = () => {
       <h2>Bachelor Party Planner</h2>
       <p>Plan a party that will please the groom and scandalize the bride.</p>
       <Beerhorn>
-        <GiBeerHorn style={{ transform: "rotate(-5deg)" }} />
+        <GiBowTie />
       </Beerhorn>
       <LoginButtons>
         <LoginButton />
@@ -30,6 +30,6 @@ const Beerhorn = styled.div`
   transition: all 3s;
   height: 50px;
   &:hover {
-    transform: rotate(75deg);
+    transform: rotate(360deg);
   }
 `;

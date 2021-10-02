@@ -34,8 +34,8 @@ const What = () => {
         }}
       >
         <option defaultValue="None"></option>
-        <option value="gym">Athletics</option>
-        <option value="aquarium">Experiences</option>
+        <option value="bowling_alley">Athletics</option>
+        <option value="casino">Experiences</option>
         <option value="museum">Intellectual</option>
       </select>
       <DivLine />
@@ -48,8 +48,8 @@ const What = () => {
         }}
       >
         <option defaultValue="None"></option>
-        <option value="Restaurants">Restaurants</option>
-        <option value="DIY">DIY</option>
+        <option value="restaurant">Restaurants</option>
+        <option value="supermarket">DIY</option>
       </select>
       <DivLine />
       <label>Dietary restrictions?</label>
@@ -75,10 +75,10 @@ const What = () => {
         }}
       >
         <option defaultValue="None"></option>
-        <option value="Zero">We don't drink</option>
-        <option value="Light">Light</option>
-        <option value="Moderate">Moderate</option>
-        <option value="Heavy">Heavy</option>
+        <option value="cafe">We don't drink</option>
+        <option value="bar">Light</option>
+        <option value="bar">Moderate</option>
+        <option value="bar">Heavy</option>
       </select>
       <DivLine />
       <label>What's your budget?</label>
@@ -90,9 +90,9 @@ const What = () => {
         }}
       >
         <option defaultValue="None"></option>
-        <option value="$">$ 100-200 a person</option>
-        <option value="$$">$$ 200-350 a person</option>
-        <option value="$$$">$$$ 350+ a person</option>
+        <option value="2">$ 100-200 a person</option>
+        <option value="3">$$ 200-350 a person</option>
+        <option value="4">$$$ 350+ a person</option>
       </select>
       <DivLine />
       {/* {console.log("Form Data", formData)} */}
