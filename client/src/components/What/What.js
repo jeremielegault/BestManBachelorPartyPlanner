@@ -23,9 +23,9 @@ const What = () => {
 
   return (
     <WhatWrap>
-      <h1>What?</h1>
+      <PageTitle>What?</PageTitle>
 
-      <label>What type of activities do you enjoy as a group?</label>
+      <FormLabel>What type of activities do you enjoy as a group?</FormLabel>
       <DropdownForm
         selected={formData.activity}
         value={formData.activity}
@@ -39,7 +39,7 @@ const What = () => {
         <option value="museum">Intellectual</option>
       </DropdownForm>
       <DivLine />
-      <label>How do you wish to dine?</label>
+      <FormLabel>How do you wish to dine?</FormLabel>
       <DropdownForm
         selected={formData.eat}
         value={formData.eat}
@@ -52,7 +52,7 @@ const What = () => {
         <option value="supermarket">DIY</option>
       </DropdownForm>
       <DivLine />
-      <label>Dietary restrictions?</label>
+      <FormLabel>Dietary restrictions?</FormLabel>
       <DropdownForm
         selected={formData.dietaryRes}
         value={formData.dietaryRes}
@@ -66,7 +66,7 @@ const What = () => {
         <option value="Vegetarian">Vegetarian</option>
       </DropdownForm>
       <DivLine />
-      <label>How would you describe your drinking?</label>
+      <FormLabel>How would you describe your drinking?</FormLabel>
       <DropdownForm
         selected={formData.drinking}
         value={formData.drinking}
@@ -81,7 +81,7 @@ const What = () => {
         <option value="bar">Heavy</option>
       </DropdownForm>
       <DivLine />
-      <label>What's your budget?</label>
+      <FormLabel>What's your budget?</FormLabel>
       <DropdownForm
         selected={formData.budget}
         value={formData.budget}
@@ -105,12 +105,20 @@ const What = () => {
             handleSubmit();
           }}
         >
-          <h2>Next</h2>
+          Next
         </Button>
       </Link>
     </WhatWrap>
   );
 };
+
+const FormLabel = styled.label`
+  font-size: 1rem;
+`;
+
+const PageTitle = styled.h1`
+  font-size: 1.802rem;
+`;
 
 const WhatWrap = styled.div`
   padding: 20px;
@@ -132,6 +140,7 @@ const DropdownForm = styled.select`
   /* background-color: #ebab00; */
   /* background-color: #af87fd; */
   background-color: #87a1c6;
+  border: none;
   border-radius: 5px;
   color: white;
   font-weight: bold;
@@ -139,10 +148,14 @@ const DropdownForm = styled.select`
 
 const Button = styled.button`
   /* background-color: #af87fd; */
+  height: 35px;
+  width: 60px;
+  font-weight: bold;
   background-color: #ebab00;
   border: none;
   border-radius: 5px;
   color: white;
+  font-size: 1.266rem;
 `;
 
 export default What;

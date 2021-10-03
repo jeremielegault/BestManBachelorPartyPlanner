@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import styled from "styled-components";
 import { Link } from "react-router-dom";
 import FormContext from "../Reducers/FormContext";
 
@@ -30,32 +31,21 @@ const Where = () => {
     }
   };
 
-  // Get the location here and send it back to the server
-  // useEffect(() => {
-  //   fetch("/getlatlon")
-  //     .then((res) => res.json())
-  //     .then((data) => {
-  //       console.log("Lat and Lon", data);
-  //       setLatLon(data);
-  //     })
-  //     .catch((err) => {
-  //       console.log("Error", err);
-  //     });
-  // }, []);
-
   return (
-    <div>
-      <h1>Where?</h1>
-      <p>We use your location to generate results based on your selections!</p>
-      <h1>Current location:</h1>
-      <button onClick={getLocation}>Get Location</button>
-      <h1>Coordinates</h1>
-      <p>{status}</p>
-      {lat && <p>Latitude: {lat}</p>}
-      {lng && <p>Longitude: {lng}</p>}
+    <WhereWrap>
+      <PageTitle>Where?</PageTitle>
+      <BodyText>
+        We use your location to generate results based on your selections!
+      </BodyText>
+      <PageSubtitle>Current location:</PageSubtitle>
+      <Button onClick={getLocation}>Get Location</Button>
+      <PageSubtitle>Coordinates:</PageSubtitle>
+      <BodyText>{status}</BodyText>
+      {lat && <BodyText>Latitude: {lat}</BodyText>}
+      {lng && <BodyText>Longitude: {lng}</BodyText>}
       <Link to="/when">
         {lat && (
-          <button
+          <NextButton
             onClick={() =>
               receiveLatLong({
                 lat: lat,
@@ -64,12 +54,56 @@ const Where = () => {
             }
           >
             Next
-          </button>
+          </NextButton>
         )}
       </Link>
-    </div>
+    </WhereWrap>
   );
 };
+
+const BodyText = styled.p`
+  font-size: 1rem;
+`;
+
+const PageSubtitle = styled.h2`
+  font-size: 1.424rem;
+`;
+
+const PageTitle = styled.h1`
+  font-size: 1.802rem;
+`;
+const WhereWrap = styled.div`
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* background-color: #84d3fb; */
+  background-color: #bee0ed;
+  /* font-weight: bold; */
+`;
+const Button = styled.button`
+  /* background-color: #af87fd; */
+  height: 45px;
+  width: 90px;
+  font-weight: bold;
+  background-color: #ebab00;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  font-size: 1rem;
+`;
+
+const NextButton = styled.button`
+  /* background-color: #af87fd; */
+  height: 35px;
+  width: 70px;
+  font-weight: bold;
+  background-color: #ebab00;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  font-size: 1rem;
+`;
 
 export default Where;
 

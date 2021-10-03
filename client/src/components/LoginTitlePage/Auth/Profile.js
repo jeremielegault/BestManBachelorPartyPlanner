@@ -21,7 +21,7 @@ const Profile = () => {
         <div></div>
         <ProfileText>{user.name}</ProfileText>
         <Link to="/homepage">
-          <button
+          <Button
             onClick={() => {
               receiveBestManInfo({
                 bestMan: user.name,
@@ -29,7 +29,7 @@ const Profile = () => {
             }}
           >
             Next
-          </button>
+          </Button>
         </Link>
       </div>
     )
@@ -37,9 +37,24 @@ const Profile = () => {
 };
 
 const UserAvatar = styled.img`
+  margin-top: 15px;
   border-radius: 50%;
   height: 40px;
 `;
-const ProfileText = styled.h2``;
+const ProfileText = styled.h2`
+  font-size: 1.266rem;
+`;
+
+const Button = styled.button`
+  /* background-color: #af87fd; */
+  height: 35px;
+  width: 70px;
+  font-weight: bold;
+  background-color: #ebab00;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  font-size: 1.266rem;
+`;
 
 export default Profile;

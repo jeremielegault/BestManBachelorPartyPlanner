@@ -17,12 +17,13 @@ const When = () => {
   console.log("Form Context!", start, end, duration);
   return (
     <WhenWrap>
-      <h1>When?</h1>
-      <p>Select the date(s)</p>
+      <PageTitle>When?</PageTitle>
+      <PageSubtitle>Select the date(s)</PageSubtitle>
 
-      <p>Start Date</p>
+      <BodyText>Start Date</BodyText>
       <DatePicker
         selected={formData.start}
+        dateFormat="dd/MM/yyyy"
         onChange={(date) => {
           // setForm(date);
           setFormData({ ...formData, start: date });
@@ -30,9 +31,10 @@ const When = () => {
       />
       {console.log("Form Data", formData)}
 
-      <p>End Date</p>
+      <BodyText>End Date</BodyText>
       <DatePicker
         selected={formData.end}
+        dateFormat="dd/MM/yyyy"
         onChange={(date) => {
           // setEndDate(date);
           setFormData({ ...formData, end: date });
@@ -42,8 +44,9 @@ const When = () => {
       {/* User selects the number of days */}
       <Duration>
         <label>
-          Duration (days):
-          <input
+          <BodyText>Duration (days):</BodyText>
+          <div></div>
+          <StyledInput
             type="number"
             value={formData.duration}
             name="duration"
@@ -57,7 +60,7 @@ const When = () => {
       </Duration>
 
       <Link to="/who">
-        <button
+        <NextButton
           onClick={() =>
             receiveFormInfoFromForm({
               ...formData,
@@ -65,20 +68,58 @@ const When = () => {
           }
         >
           Next
-        </button>
+        </NextButton>
       </Link>
     </WhenWrap>
   );
 };
+
+const PageTitle = styled.h1`
+  font-size: 1.802rem;
+`;
+
+const PageSubtitle = styled.h2`
+  font-size: 1.424rem;
+`;
+
+const BodyText = styled.p`
+  font-size: 1rem;
+`;
 
 const WhenWrap = styled.div`
   padding: 20px;
   display: flex;
   flex-direction: column;
   align-items: center;
+  /* background-color: #84d3fb; */
+  background-color: #bee0ed;
 `;
 
 const Duration = styled.div`
   padding-top: 20px;
 `;
+
+const NextButton = styled.button`
+  margin-top: 25px;
+  height: 35px;
+  width: 70px;
+  font-weight: bold;
+  background-color: #ebab00;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  font-size: 1rem;
+`;
+
+const StyledInput = styled.input`
+  /* background-color: #ebab00; */
+  /* background-color: #af87fd; */
+  background-color: #87a1c6;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  font-weight: bold;
+  text-align: center;
+`;
+
 export default When;

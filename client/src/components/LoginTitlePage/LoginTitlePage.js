@@ -7,10 +7,12 @@ import Profile from "./Auth/Profile";
 
 const LoginTitlePage = () => {
   return (
-    <div>
-      <h1>Best Man</h1>
+    <HomePageWrap>
+      <PageTitle>Best Man</PageTitle>
       <h2>Bachelor Party Planner</h2>
-      <p>Plan a party that will please the groom and scandalize the bride.</p>
+      <BodyText>
+        Plan a party that will please the groom and scandalize the bride.
+      </BodyText>
       <Beerhorn>
         <GiBowTie />
       </Beerhorn>
@@ -19,13 +21,32 @@ const LoginTitlePage = () => {
         <LogoutButton />
       </LoginButtons>
       <Profile />
-    </div>
+    </HomePageWrap>
   );
 };
 
 export default LoginTitlePage;
 
+const BodyText = styled.p`
+  font-size: 1rem;
+`;
+
+const PageTitle = styled.h1`
+  font-size: 1.802rem;
+`;
+
+const HomePageWrap = styled.div`
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* background-color: #84d3fb; */
+  background-color: #bee0ed;
+  /* font-weight: bold; */
+`;
+
 const LoginButtons = styled.div``;
+
 const Beerhorn = styled.div`
   transition: all 3s;
   height: 50px;

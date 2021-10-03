@@ -14,37 +14,34 @@ const Who = () => {
 
   return (
     <WhoWrap>
-      <h1>Who?</h1>
+      <PageTitle>Who?</PageTitle>
       <form>
-        <label>
-          Name of the groom:
-          <input
-            type="text"
-            value={formData.groomName}
-            name="groomName"
-            onChange={(event) => {
-              setFormData({ ...formData, groomName: event.target.value });
-            }}
-            placeholder="Write groom's name here"
-          />
-          {console.log("Form Data", formData)}
-        </label>
+        <FormLabel>Name of the groom:</FormLabel>
+        <input
+          type="text"
+          value={formData.groomName}
+          name="groomName"
+          onChange={(event) => {
+            setFormData({ ...formData, groomName: event.target.value });
+          }}
+          placeholder="Write groom's name here"
+        />
+        {console.log("Form Data", formData)}
+
         <DivLine />
-        <label>
-          Number of guests:
-          <input
-            type="number"
-            value={formData.numGuests}
-            name="numGuests"
-            min="0"
-            onChange={(event) =>
-              setFormData({ ...formData, numGuests: event.target.value })
-            }
-          />
-        </label>
+        <FormLabel>Number of guests:</FormLabel>
+        <input
+          type="number"
+          value={formData.numGuests}
+          name="numGuests"
+          min="0"
+          onChange={(event) =>
+            setFormData({ ...formData, numGuests: event.target.value })
+          }
+        />
       </form>
       <Link to="/what">
-        <button
+        <Button
           onClick={() =>
             receiveFormInfoFromWho({
               ...formData,
@@ -52,7 +49,7 @@ const Who = () => {
           }
         >
           Next
-        </button>
+        </Button>
       </Link>
     </WhoWrap>
   );
@@ -63,11 +60,43 @@ const WhoWrap = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  background-color: #bee0ed;
 `;
 
 const DivLine = styled.div`
   border: 1px;
   margin: 5px 0 5px;
   width: 500px;
+`;
+
+const FormLabel = styled.label`
+  font-size: 1rem;
+`;
+
+const PageTitle = styled.h1`
+  font-size: 1.802rem;
+`;
+
+const DropdownForm = styled.select`
+  /* background-color: #ebab00; */
+  /* background-color: #af87fd; */
+  background-color: #87a1c6;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  font-weight: bold;
+`;
+
+const Button = styled.button`
+  /* background-color: #af87fd; */
+  height: 35px;
+  width: 60px;
+  font-weight: bold;
+  background-color: #ebab00;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  font-size: 1.266rem;
+  margin-top: 15px;
 `;
 export default Who;
