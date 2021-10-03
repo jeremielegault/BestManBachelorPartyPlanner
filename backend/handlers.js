@@ -4,7 +4,7 @@ const { MongoClient } = require("mongodb");
 
 require("dotenv").config();
 
-const { MONGO_URI } = process.env;
+const { REACT_APP_MONGO_URI, REACT_APP_GOOGLE_MAPS_API_KEY } = process.env;
 
 const options = {
   useNewUrlParser: true,
@@ -22,6 +22,9 @@ const { v4: uuidv4 } = require("uuid");
 // Takes in the lat and lon and returns new restaurants closeby
 const getLocationsByLatLon = async (req, res) => {
   console.log("reqHandler", req.params);
+
+  console.log("API", REACT_APP_GOOGLE_MAPS_API_KEY);
+  console.log("MongoURI", REACT_APP_MONGO_URI);
 
   var request = {
     method: "get",
@@ -45,11 +48,11 @@ const getCheapBars = async (req, res) => {
 
   var config = {
     method: "get",
-    url: "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=45.452492799999995,-73.5936512&radius=15000&type=bar&maxprice=2&key=AIzaSyAHjbhtGrQnSNHas2LvKI2-UOeu0bfT6C0",
+    url: "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=45.452492799999995,-73.5936512&radius=15000&type=bar&maxprice=2&key=AIzaSyAHjbhtGrQnSNHas2LvKIvvv2-UOeu0bfT6vrvC0",
     headers: {},
   };
 
-  return axios(config)
+  return config
     .then(function (response) {
       res.send(response.data);
     })
@@ -61,7 +64,7 @@ const getCheapBars = async (req, res) => {
 // This function adds one reservation to MongoDB
 const addReservations = async (req, res) => {
   try {
-    const client = new MongoClient(MONGO_URI, options);
+    const client = new MongoClient(REACT_APP_MONGO_URI, options);
 
     await client.connect();
 
