@@ -19,7 +19,7 @@ const Results = () => {
   // Use effect to generate activity dynamically
   useEffect(() => {
     fetch(
-      `http://localhost:8000/getlocationsbylatlon/${formContext.state.lat}/${formContext.state.lng}/${formContext.state.activity}`,
+      `http://localhost:8000/getlocationsbylatlon/${formContext.state.lat}/${formContext.state.lng}/${formContext.state.activity}/${formContext.state.budget}`,
       {
         method: "GET",
         headers: {
@@ -41,7 +41,7 @@ const Results = () => {
   // Use effect to generate restaurant list dynamically
   useEffect(() => {
     fetch(
-      `http://localhost:8000/getlocationsbylatlon/${formContext.state.lat}/${formContext.state.lng}/${formContext.state.eat}`,
+      `http://localhost:8000/getlocationsbylatlon/${formContext.state.lat}/${formContext.state.lng}/${formContext.state.eat}/${formContext.state.budget}`,
       {
         method: "GET",
         headers: {
@@ -63,7 +63,7 @@ const Results = () => {
   // Use effect to generate Bar list dynamically
   useEffect(() => {
     fetch(
-      `http://localhost:8000/getlocationsbylatlon/${formContext.state.lat}/${formContext.state.lng}/${formContext.state.drinking}`,
+      `http://localhost:8000/getlocationsbylatlon/${formContext.state.lat}/${formContext.state.lng}/${formContext.state.drinking}/${formContext.state.budget}`,
       {
         method: "GET",
         headers: {
@@ -102,7 +102,10 @@ const Results = () => {
           </Suggestion>
         ))
       ) : (
-        <h1>Here's a helpful weekend menu!</h1>
+        <>
+          <h1>Here's a delicious weekend menu that's easy to prepare!</h1>
+          <p> </p>
+        </>
       )}
       <h1>Choose a drinking establishment:</h1>
       {bars ? (

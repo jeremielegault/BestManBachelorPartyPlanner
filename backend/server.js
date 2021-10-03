@@ -39,7 +39,7 @@ express()
   .get("/getcheapbars", getCheapBars)
 
   // Fetch recommendations based  on user input
-  .get("/getlocationsbylatlon/:lat/:long/:type", getLocationsByLatLon)
+  .get("/getlocationsbylatlon/:lat/:long/:type/:maxprice", getLocationsByLatLon)
 
   //
   // add new endpoints here ☝️

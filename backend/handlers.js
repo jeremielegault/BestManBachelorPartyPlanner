@@ -22,10 +22,10 @@ const { v4: uuidv4 } = require("uuid");
 // Takes in the lat and lon and returns new restaurants closeby
 const getLocationsByLatLon = async (req, res) => {
   console.log("reqHandler", req.params);
-  // console.log("res", res);
+
   var request = {
     method: "get",
-    url: `https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${req.params.lat},${req.params.long}&radius=30000&type=${req.params.type}&maxprice=2&key=AIzaSyAHjbhtGrQnSNHas2LvKI2-UOeu0bfT6C0`,
+    url: `https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${req.params.lat},${req.params.long}&radius=50000&type=${req.params.type}&maxprice=${req.params.maxprice}&key=AIzaSyAHjbhtGrQnSNHas2LvKI2-UOeu0bfT6C0`,
     headers: {},
   };
   return axios(request)

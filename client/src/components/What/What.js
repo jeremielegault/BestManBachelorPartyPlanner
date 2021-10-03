@@ -34,7 +34,7 @@ const What = () => {
         }}
       >
         <option defaultValue="None"></option>
-        <option value="bowling_alley">Athletics</option>
+        <option value="stadium">Athletics</option>
         <option value="casino">Experiences</option>
         <option value="museum">Intellectual</option>
       </DropdownForm>
