@@ -9,6 +9,8 @@ import Who from "./components/Who/Who";
 import What from "./components/What/What";
 import Confirmation from "./components/Confirmation/Confirmation";
 import Results from "./components/Results/Results";
+import Meatymenu from "./Menus/Meatymenu";
+import Vegmenu from "./Menus/Vegmenu";
 
 function App() {
   return (
@@ -38,6 +40,12 @@ function App() {
           </Route>
           <Route exact path="/results">
             <Results />
+          </Route>
+          <Route exact path="/meatymenu">
+            <Meatymenu />
+          </Route>
+          <Route exact path="/vegmenu">
+            <Vegmenu />
           </Route>
         </Switch>
       </Main>

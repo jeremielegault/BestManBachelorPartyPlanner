@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import styled from "styled-components";
 import FormContext from "../Reducers/FormContext";
 import { Link } from "react-router-dom";
+import moment from "moment";
 
 // Confirmation Component
 const Confirmation = () => {
@@ -13,8 +14,8 @@ const Confirmation = () => {
   return (
     <Wrapper>
       <h1>Confirmation</h1>
-      <h3>Your party is confirmed!</h3>
-      <h4>Please save your Reservation ID</h4>
+      <h2>Your party is confirmed!</h2>
+      <h3>Please save your Reservation ID</h3>
       <ConfirmWrap>
         <div>
           <P>
@@ -37,13 +38,13 @@ const Confirmation = () => {
         <div>
           <P>
             <FormItem>Start Date: </FormItem>
-            {formContext.state.start.date}
+            {moment(formContext.state.start).format("MMM Do YYYY")}
           </P>
         </div>
         <div>
           <P>
             <FormItem>End Date: </FormItem>
-            {formContext.state.end.date}
+            {moment(formContext.state.end).format("MMM Do YYYY")}
           </P>
         </div>
         <div>
@@ -60,7 +61,7 @@ const Confirmation = () => {
         </div>
       </ConfirmWrap>
       <Link to="/results">
-        <button>Get Recommendations!</button>
+        <Button>Get Recommendations!</Button>
       </Link>
     </Wrapper>
   );
@@ -73,10 +74,11 @@ const Wrapper = styled.div`
   flex-direction: column;
   align-items: center;
   flex: 1;
+  background-color: #bee0ed;
 `;
 
 const ConfirmWrap = styled.div`
-  border: 3px solid;
+  border: 3px solid #87a1c6;
   border-radius: 5px;
   padding: 20px;
   display: flex;
@@ -86,8 +88,24 @@ const ConfirmWrap = styled.div`
 
 const P = styled.p`
   margin-top: 6px;
+  font-size: 1rem;
 `;
 
 const FormItem = styled.span`
   font-weight: bold;
+`;
+
+const Button = styled.button`
+  /* background-color: #af87fd; */
+  height: 60px;
+  width: 160px;
+  font-weight: bold;
+  background-color: #ebab00;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  font-size: 1rem;
+  text-align: center;
+  margin-top: 5px;
+  margin-bottom: 5px;
 `;

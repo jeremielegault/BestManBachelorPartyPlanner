@@ -49,7 +49,7 @@ const What = () => {
       >
         <option defaultValue="None"></option>
         <option value="restaurant">Restaurants</option>
-        <option value="supermarket">DIY</option>
+        <option value="DIY">DIY</option>
       </DropdownForm>
       <DivLine />
       <FormLabel>Dietary restrictions?</FormLabel>
@@ -61,9 +61,9 @@ const What = () => {
         }}
       >
         <option defaultValue="None"></option>
-        <option value="Omnivore">Omnivore</option>
-        <option value="Vegan">Vegan</option>
-        <option value="Vegetarian">Vegetarian</option>
+        <option value="omnivore">Omnivore</option>
+        <option value="vegan">Vegan</option>
+        <option value="vegetarian">Vegetarian</option>
       </DropdownForm>
       <DivLine />
       <FormLabel>How would you describe your drinking?</FormLabel>

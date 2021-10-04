@@ -4,7 +4,9 @@ const { MongoClient } = require("mongodb");
 
 require("dotenv").config();
 
-const { REACT_APP_MONGO_URI, REACT_APP_GOOGLE_MAPS_API_KEY } = process.env;
+const { REACT_APP_MONGO_URI } = process.env;
+
+const { REACT_APP_GOOGLE_MAPS_API_KEY } = process.env;
 
 const options = {
   useNewUrlParser: true,
@@ -28,7 +30,7 @@ const getLocationsByLatLon = async (req, res) => {
 
   var request = {
     method: "get",
-    url: `https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${req.params.lat},${req.params.long}&radius=50000&type=${req.params.type}&maxprice=${req.params.maxprice}&key=AIzaSyAHjbhtGrQnSNHas2LvKI2-UOeu0bfT6C0`,
+    url: `https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${req.params.lat},${req.params.long}&radius=50000&type=${req.params.type}&maxprice=${req.params.maxprice}&key=${REACT_APP_GOOGLE_MAPS_API_KEY}`,
     headers: {},
   };
   return axios(request)

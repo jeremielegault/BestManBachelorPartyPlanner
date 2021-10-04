@@ -1,6 +1,7 @@
 import React, { useContext, useState, useEffect } from "react";
 import styled from "styled-components";
 import FormContext from "../Reducers/FormContext";
+import { Link } from "react-router-dom";
 
 const Results = () => {
   // Make the form context available in this component
@@ -83,44 +84,110 @@ const Results = () => {
   }, []);
 
   return (
-    <>
+    <Wrapper>
       <h1>Choose an Activity:</h1>
       {activities ? (
         activities.map((activity) => (
-          <Suggestion key={uuidv4()}>
-            name: {activity.name} address: {activity.vicinity}
-          </Suggestion>
+          <SugWrap>
+            <Suggestion key={uuidv4()}>
+              <SugTit>Name:</SugTit> {activity.name} <SugTit>Address:</SugTit>{" "}
+              {activity.vicinity}
+            </Suggestion>
+          </SugWrap>
         ))
       ) : (
-        <h1>No Results, sorry!</h1>
+        <p>No Results, sorry!</p>
       )}
       <h1>Choose a Restaurant:</h1>
-      {restos ? (
+      {formContext.state.eat === "restaurant" ? (
         restos.map((resto) => (
-          <Suggestion key={uuidv4()}>
-            name: {resto.name} address: {resto.vicinity}
-          </Suggestion>
+          <SugWrap>
+            <Suggestion key={uuidv4()}>
+              <SugTit>Name:</SugTit> {resto.name} <SugTit>Address:</SugTit>{" "}
+              {resto.vicinity}
+            </Suggestion>
+          </SugWrap>
         ))
       ) : (
         <>
-          <h1>Here's a delicious weekend menu that's easy to prepare!</h1>
-          <p> </p>
+          {formContext.state.dietaryRes === "omnivore" &&
+          formContext.state.eat === "DIY" ? (
+            <>
+              <h2>Here's a delicious meaty menu that's easy to prepare!</h2>
+              <Link to="/meatymenu">
+                <Button>Get Menu!</Button>
+              </Link>
+            </>
+          ) : (
+            <>
+              <h2>
+                Here's a delicious vegan/vegetarian menu that's easy to prepare!
+              </h2>
+              <Link to="/vegmenu">
+                <Button>Get Menu!</Button>
+              </Link>
+            </>
+          )}
         </>
       )}
-      <h1>Choose a drinking establishment:</h1>
+      <h1>Choose a Drinking Establishment:</h1>
       {bars ? (
         bars.map((bar) => (
-          <Suggestion key={uuidv4()}>
-            name: {bar.name} address: {bar.vicinity}
-          </Suggestion>
+          <SugWrap>
+            <Suggestion key={uuidv4()}>
+              <SugTit>Name:</SugTit> {bar.name} <SugTit>Address:</SugTit>{" "}
+              {bar.vicinity}
+            </Suggestion>
+          </SugWrap>
         ))
       ) : (
-        <h1>Enjoy your tea with lemon!</h1>
+        <p>Enjoy your tea with lemon!</p>
       )}
-    </>
+    </Wrapper>
   );
 };
 
 const Suggestion = styled.div``;
 
+const SugWrap = styled.div`
+  background-color: #87a1c6;
+  color: white;
+  border-radius: 5px;
+  padding: 3px 0 3px 0;
+  margin-left: 3px;
+  margin-right: 3px;
+  margin-top: 2px;
+`;
+
+const Wrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+  flex: 1;
+  background-color: #bee0ed;
+`;
+
+const ConfirmWrap = styled.div`
+  border: 3px solid #87a1c6;
+  border-radius: 5px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+`;
+const Button = styled.button`
+  /* background-color: #af87fd; */
+  height: 45px;
+  width: 90px;
+  font-weight: bold;
+  background-color: #ebab00;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  font-size: 1rem;
+`;
+
+const SugTit = styled.div`
+  font-weight: bold;
+`;
 export default Results;

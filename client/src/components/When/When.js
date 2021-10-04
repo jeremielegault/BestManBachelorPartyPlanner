@@ -23,7 +23,6 @@ const When = () => {
       <BodyText>Start Date</BodyText>
       <DatePicker
         selected={formData.start}
-        dateFormat="dd/MM/yyyy"
         onChange={(date) => {
           // setForm(date);
           setFormData({ ...formData, start: date });
@@ -34,9 +33,9 @@ const When = () => {
       <BodyText>End Date</BodyText>
       <DatePicker
         selected={formData.end}
-        dateFormat="dd/MM/yyyy"
         onChange={(date) => {
           // setEndDate(date);
+          console.log("Type Of", typeof date);
           setFormData({ ...formData, end: date });
         }}
       />
