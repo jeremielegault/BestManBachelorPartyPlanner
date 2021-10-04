@@ -90,7 +90,7 @@ const Results = () => {
         activities.map((activity) => (
           <SugWrap>
             <Suggestion key={uuidv4()}>
-              <SugTit>Name:</SugTit> {activity.name} <SugTit>Address:</SugTit>{" "}
+              <SugTit>Name:</SugTit> {activity.name} <SugTit>Address:</SugTit>
               {activity.vicinity}
             </Suggestion>
           </SugWrap>
@@ -99,11 +99,11 @@ const Results = () => {
         <p>No Results, sorry!</p>
       )}
       <h1>Choose a Restaurant:</h1>
-      {formContext.state.eat === "restaurant" ? (
+      {formContext.state.eat === "restaurant" && restos ? (
         restos.map((resto) => (
           <SugWrap>
             <Suggestion key={uuidv4()}>
-              <SugTit>Name:</SugTit> {resto.name} <SugTit>Address:</SugTit>{" "}
+              <SugTit>Name:</SugTit> {resto.name} <SugTit>Address:</SugTit>
               {resto.vicinity}
             </Suggestion>
           </SugWrap>
@@ -135,13 +135,13 @@ const Results = () => {
         bars.map((bar) => (
           <SugWrap>
             <Suggestion key={uuidv4()}>
-              <SugTit>Name:</SugTit> {bar.name} <SugTit>Address:</SugTit>{" "}
+              <SugTit>Name:</SugTit> {bar.name} <SugTit>Address:</SugTit>
               {bar.vicinity}
             </Suggestion>
           </SugWrap>
         ))
       ) : (
-        <p>Enjoy your tea with lemon!</p>
+        <p>Consider having tea with lemon!</p>
       )}
     </Wrapper>
   );
@@ -167,14 +167,6 @@ const Wrapper = styled.div`
   background-color: #bee0ed;
 `;
 
-const ConfirmWrap = styled.div`
-  border: 3px solid #87a1c6;
-  border-radius: 5px;
-  padding: 20px;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-`;
 const Button = styled.button`
   /* background-color: #af87fd; */
   height: 45px;
@@ -190,4 +182,5 @@ const Button = styled.button`
 const SugTit = styled.div`
   font-weight: bold;
 `;
+
 export default Results;

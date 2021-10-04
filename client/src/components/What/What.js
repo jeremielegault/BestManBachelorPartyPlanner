@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import FormContext from "../Reducers/FormContext";
@@ -18,6 +18,8 @@ const What = () => {
     drinking,
     budget,
   });
+
+  const formContext = useContext(FormContext);
 
   // console.log("Form Context!", activity, eat, dietaryRes, drinking, budget);
 
@@ -95,14 +97,14 @@ const What = () => {
         <option value="4">$$$ 350+ a person</option>
       </DropdownForm>
       <DivLine />
-      {/* {console.log("Form Data", formData)} */}
+      {console.log("What Form Data", formContext.state)}
       <Link to="/confirmation">
         <Button
           onClick={() => {
             receiveFormInfoFromWhat({
               ...formData,
             });
-            handleSubmit();
+            handleSubmit(formContext.state);
           }}
         >
           Next
