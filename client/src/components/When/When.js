@@ -7,14 +7,20 @@ import FormContext from "../Reducers/FormContext";
 
 const When = () => {
   const {
-    state: { start, end, duration },
+    state: { start, end },
     receiveFormInfoFromForm,
   } = React.useContext(FormContext);
 
   // Handle all three pieces (start, end, duration) form data in state
-  const [formData, setFormData] = useState({ start, end, duration });
+  const [formData, setFormData] = useState({ start, end });
 
-  console.log("Form Context!", start, end, duration);
+  // Dynamically calculate duration of the party
+  const getDuration = (d1, d2) => {
+    const diff = d2.getTime() - d1.getTime();
+
+    return Math.ceil(diff / (1000 * 60 * 60 * 24));
+  };
+
   return (
     <WhenWrap>
       <PageTitle>When?</PageTitle>
@@ -24,8 +30,13 @@ const When = () => {
       <DatePicker
         selected={formData.start}
         onChange={(date) => {
-          // setForm(date);
-          setFormData({ ...formData, start: date });
+          setFormData((curr) => {
+            return {
+              ...curr,
+              start: date,
+              duration: getDuration(date, curr.end),
+            };
+          });
         }}
       />
       {console.log("Form Data", formData)}
@@ -34,9 +45,13 @@ const When = () => {
       <DatePicker
         selected={formData.end}
         onChange={(date) => {
-          // setEndDate(date);
-          console.log("Type Of", typeof date);
-          setFormData({ ...formData, end: date });
+          setFormData((curr) => {
+            return {
+              ...curr,
+              end: date,
+              duration: getDuration(curr.start, date),
+            };
+          });
         }}
       />
 
@@ -50,11 +65,9 @@ const When = () => {
             value={formData.duration}
             name="duration"
             min="0"
-            onChange={(event) =>
-              setFormData({ ...formData, duration: event.target.value })
-            }
-            placeholder="Select the number of days"
-          />
+          >
+            {getDuration(formData.start, formData.end)}
+          </StyledInput>
         </label>
       </Duration>
 
@@ -110,7 +123,7 @@ const NextButton = styled.button`
   font-size: 1rem;
 `;
 
-const StyledInput = styled.input`
+const StyledInput = styled.p`
   /* background-color: #ebab00; */
   /* background-color: #af87fd; */
   background-color: #87a1c6;

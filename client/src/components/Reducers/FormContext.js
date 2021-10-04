@@ -24,6 +24,7 @@ const initialState = {
 function reducer(state, action) {
   switch (action.type) {
     case "receive-form-info-from-form": {
+      console.log("Taco", action);
       return {
         ...state,
         start: action.start,
