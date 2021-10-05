@@ -36,9 +36,9 @@ const What = () => {
         }}
       >
         <option defaultValue="None"></option>
-        <option value="stadium">Athletics</option>
-        <option value="casino">Experiences</option>
-        <option value="museum">Intellectual</option>
+        <option value="hiking|sportif">Athletics</option>
+        <option value="brewery|dancing">Experiences</option>
+        <option value="boardgame|chess">Intellectual</option>
       </DropdownForm>
       <DivLine />
       <FormLabel>How do you wish to dine?</FormLabel>

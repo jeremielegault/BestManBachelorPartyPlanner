@@ -8,7 +8,7 @@
     "start": "nodemon server.js",
     "dev:backend": "nodemon server.js"
   },
-  "author": "Scott Morin <scott@journeyedu.co>",
+  "author": "Jeremie Legault <jerry@condormatador.com>",
   "license": "MIT",
   "dependencies": {
     "@googlemaps/google-maps-services-js": "^3.2.2",

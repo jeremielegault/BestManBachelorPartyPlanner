@@ -38,6 +38,7 @@ const When = () => {
             };
           });
         }}
+        required
       />
       {console.log("Form Data", formData)}
 
@@ -53,6 +54,7 @@ const When = () => {
             };
           });
         }}
+        required
       />
 
       {/* User selects the number of days */}

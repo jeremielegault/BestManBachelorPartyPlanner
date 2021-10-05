@@ -8,6 +8,8 @@ const { REACT_APP_MONGO_URI } = process.env;
 
 const { REACT_APP_GOOGLE_MAPS_API_KEY } = process.env;
 
+const { REACT_APP_YELP_API_KEY } = process.env;
+
 const options = {
   useNewUrlParser: true,
   useUnifiedTopology: true,
@@ -30,7 +32,7 @@ const getLocationsByLatLon = async (req, res) => {
 
   var request = {
     method: "get",
-    url: `https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${req.params.lat},${req.params.long}&radius=50000&type=${req.params.type}&maxprice=${req.params.maxprice}&key=${REACT_APP_GOOGLE_MAPS_API_KEY}`,
+    url: `https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${req.params.lat},${req.params.long}&radius=30000&keyword=${req.params.type}&maxprice=${req.params.maxprice}&key=${REACT_APP_GOOGLE_MAPS_API_KEY}`,
     headers: {},
   };
   return axios(request)
@@ -43,8 +45,32 @@ const getLocationsByLatLon = async (req, res) => {
     });
 };
 
-// Handler to get Night Out Alcohol recommendations CHEAP
+// Use the Yelp API to fetch some sports results
+// const fetchSports = async (req, res) => {
+//   const data = await axios
+//     .get(
+//       `${"https://cors-anywhere.herokuapp.com/"}https://api.yelp.com/v3/businesses/search?categories=${
+//         req.params.type
+//       }&latitude=${req.params.lat}&${req.params.long}`,
+//       {
+//         headers: {
+//           Authorization: `Bearer ${REACT_APP_YELP_API_KEY}`,
+//         },
+//         params: {
+//           term: `${req.params.type}`,
+//         },
+//       }
+//     )
 
+//     .then((json) => {
+//       setItems({ items: json.data.businesses });
+//     })
+//     .catch((err) => {
+//       console.log(err);
+//     });
+// };
+
+// Handler to get Night Out Alcohol recommendations CHEAP
 const getCheapBars = async (req, res) => {
   console.log("It worked");
 
@@ -91,4 +117,5 @@ module.exports = {
   addReservations,
   getCheapBars,
   getLocationsByLatLon,
+  // fetchSports,
 };
