@@ -10,57 +10,87 @@ const Meatymenu = () => {
 
   const breakNum = formContext.state.duration - 1;
 
+  const length = formContext.state.duration;
+
   return (
     <Wrapper>
       <h1>DIY Omnivore Menu</h1>
       <p>
         Choosing to cook for yourselves can be a great way to cut down on costs!
       </p>
-      <EachMealWrapper>
-        <Subtitles>Dinner 1:</Subtitles> <li>{num * 1} burgers and buns</li>
-        <li>{num * 1} hot dogs and buns</li>
-        <li>{Math.ceil(num * 0.33)} green salad mix</li>
-        <li>
-          {Math.ceil(num * 0.2)} bottle(s) each (ketchup, mustard, relish, mayo)
-        </li>
-        <li>{Math.ceil(num * 0.1)} bottle(s) of salad dressing</li>
-      </EachMealWrapper>
-      <EachMealWrapper>
-        <Subtitles>Lunch 1:</Subtitles>
-        <li>{Math.ceil(num * 2)} tortillas</li>
-        <li>{Math.ceil(num * 0.375)} lbs ground beef</li>
-        <li>{Math.ceil(num * 0.375)} pack(s) of taco seasoning</li>
-        <li>{Math.ceil(num)} avocado(s)</li>
-        <li>{Math.ceil(num * 0.25)} jar(s) of salsa</li>
-        <li>{Math.ceil(num * 50)}g of cheese</li>
-        <li>{Math.ceil(num * 0.33)} green salad mix</li>
-      </EachMealWrapper>
-      <EachMealWrapper>
-        <Subtitles>Dinner 2:</Subtitles>
-        <li>{Math.ceil(num * 0.5)} lbs pork shoulder</li>
-        <li>{Math.ceil(num * 0.5)} bottles of your favorite bbq sauce</li>
-        <li>{num * 1} hamburger buns</li>
-        <li>{Math.ceil(num * 50)}g of shredded coleslaw</li>
-        <li>{Math.ceil(num * 0.5)} lbs of potatoes</li>
-        <li>{Math.ceil(num / 16)} pound(s) of butter</li>
-      </EachMealWrapper>
-      <EachMealWrapper>
-        <Subtitles>Breakfast Groceries:</Subtitles>
-        <p>Calculated based on duration of party</p>
-        <li>{Math.ceil(breakNum * (num * 3))} eggs</li>
-        <li>{Math.ceil(breakNum * (num * 0.25))} pack(s) of bacon</li>
-        <li>{Math.ceil(breakNum * (num * 0.025))} kilo(s) of coffee</li>
-        <li>{Math.ceil(breakNum * (num / 4))} liter(s) of milk</li>
-        <li>{Math.ceil(breakNum * (num / 16))} pound(s) of butter</li>
-      </EachMealWrapper>
-      <EachMealWrapper>
-        <Subtitles>Snacks:</Subtitles>
-        <li>{Math.ceil(breakNum * (num * 0.5))} bag(s) of chips</li>
-        <li>{Math.ceil(breakNum * (num * 0.15))} bag(s) of baby carrots</li>
-        <li>{Math.ceil(breakNum * (num * 0.15))} head(s) of celery</li>
-        <li>{Math.ceil(breakNum * (num * 0.2))} container(s) of hummus</li>
-        <li>{Math.ceil(breakNum * (num * 0.2))} container(s) of onion dip</li>
-      </EachMealWrapper>
+      {length > 1 ? (
+        <>
+          <EachMealWrapper>
+            <Subtitles>Dinner 1:</Subtitles> <li>{num * 1} burgers and buns</li>
+            <li>{num * 1} hot dogs and buns</li>
+            <li>{Math.ceil(num * 0.33)} green salad mix</li>
+            <li>
+              {Math.ceil(num * 0.2)} bottle(s) each (ketchup, mustard, relish,
+              mayo)
+            </li>
+            <li>{Math.ceil(num * 0.1)} bottle(s) of salad dressing</li>
+          </EachMealWrapper>
+          <EachMealWrapper>
+            <Subtitles>Lunch 1:</Subtitles>
+            <li>{Math.ceil(num * 2)} tortillas</li>
+            <li>{Math.ceil(num * 0.375)} lbs ground beef</li>
+            <li>{Math.ceil(num * 0.375)} pack(s) of taco seasoning</li>
+            <li>{Math.ceil(num)} avocado(s)</li>
+            <li>{Math.ceil(num * 0.25)} jar(s) of salsa</li>
+            <li>{Math.ceil(num * 50)}g of cheese</li>
+            <li>{Math.ceil(num * 0.33)} green salad mix</li>
+          </EachMealWrapper>
+          <EachMealWrapper>
+            <Subtitles>Dinner 2:</Subtitles>
+            <li>{Math.ceil(num * 0.5)} lbs pork shoulder</li>
+            <li>{Math.ceil(num * 0.5)} bottles of your favorite bbq sauce</li>
+            <li>{num * 1} hamburger buns</li>
+            <li>{Math.ceil(num * 50)}g of shredded coleslaw</li>
+            <li>{Math.ceil(num * 0.5)} lbs of potatoes</li>
+            <li>{Math.ceil(num / 16)} pound(s) of butter</li>
+          </EachMealWrapper>
+          <EachMealWrapper>
+            <Subtitles>Breakfast Groceries:</Subtitles>
+            <p>Calculated based on duration of party</p>
+            <li>{Math.ceil(breakNum * (num * 3))} eggs</li>
+            <li>{Math.ceil(breakNum * (num * 0.25))} pack(s) of bacon</li>
+            <li>{Math.ceil(breakNum * (num * 0.025))} kilo(s) of coffee</li>
+            <li>{Math.ceil(breakNum * (num / 4))} liter(s) of milk</li>
+            <li>{Math.ceil(breakNum * (num / 16))} pound(s) of butter</li>
+          </EachMealWrapper>
+          <EachMealWrapper>
+            <Subtitles>Snacks:</Subtitles>
+            <li>{Math.ceil(breakNum * (num * 0.5))} bag(s) of chips</li>
+            <li>{Math.ceil(breakNum * (num * 0.15))} bag(s) of baby carrots</li>
+            <li>{Math.ceil(breakNum * (num * 0.15))} head(s) of celery</li>
+            <li>{Math.ceil(breakNum * (num * 0.2))} container(s) of hummus</li>
+            <li>
+              {Math.ceil(breakNum * (num * 0.2))} container(s) of onion dip
+            </li>
+          </EachMealWrapper>
+        </>
+      ) : (
+        <>
+          <EachMealWrapper>
+            <Subtitles>Dinner:</Subtitles> <li>{num * 1} burgers and buns</li>
+            <li>{num * 1} hot dogs and buns</li>
+            <li>{Math.ceil(num * 0.33)} green salad mix</li>
+            <li>
+              {Math.ceil(num * 0.2)} bottle(s) each (ketchup, mustard, relish,
+              mayo)
+            </li>
+            <li>{Math.ceil(num * 0.1)} bottle(s) of salad dressing</li>
+          </EachMealWrapper>
+          <EachMealWrapper>
+            <Subtitles>Snacks:</Subtitles>
+            <li>{Math.ceil(num * 0.5)} bag(s) of chips</li>
+            <li>{Math.ceil(num * 0.15)} bag(s) of baby carrots</li>
+            <li>{Math.ceil(num * 0.15)} head(s) of celery</li>
+            <li>{Math.ceil(num * 0.2)} container(s) of hummus</li>
+            <li>{Math.ceil(num * 0.2)} container(s) of onion dip</li>
+          </EachMealWrapper>
+        </>
+      )}
       <Link to="/results">
         <Button>Back to Results</Button>
       </Link>
