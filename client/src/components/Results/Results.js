@@ -98,10 +98,11 @@ const Results = () => {
       ) : (
         <p>No Results, sorry!</p>
       )}
-      <h1>Choose a Restaurant:</h1>
+
       {formContext.state.eat === "restaurant" && restos ? (
         restos.map((resto) => (
           <SugWrap>
+            <h1>Choose a Restaurant:</h1>
             <Suggestion key={uuidv4()}>
               <SugTit>Name:</SugTit> {resto.name} <SugTit>Address:</SugTit>
               {resto.vicinity}
@@ -113,6 +114,7 @@ const Results = () => {
           {formContext.state.dietaryRes === "omnivore" &&
           formContext.state.eat === "DIY" ? (
             <>
+              <h1>Menu:</h1>
               <h2>Here's a delicious meaty menu that's easy to prepare!</h2>
               <Link to="/meatymenu">
                 <Button>Get Menu!</Button>
@@ -120,6 +122,7 @@ const Results = () => {
             </>
           ) : (
             <>
+              <h1>Menu:</h1>
               <h2>
                 Here's a delicious vegan/vegetarian menu that's easy to prepare!
               </h2>
