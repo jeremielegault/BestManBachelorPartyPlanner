@@ -36,9 +36,11 @@ const What = () => {
         }}
       >
         <option defaultValue="None"></option>
-        <option value="hiking|sportif">Sports</option>
-        <option value="brewery|dancing">Experiences</option>
-        <option value="boardgame|chess">Intellectual</option>
+        <option value="hiking|sportif|hockey|basketball|soccer">Sports</option>
+        <option value="escaperoom|lasertag|rageroom|axethrowing">
+          Experiences
+        </option>
+        <option value="boardgame|chess|museum|artgallery">Intellectual</option>
       </DropdownForm>
       <DivLine />
       <FormLabel>How do you wish to dine?</FormLabel>

@@ -11,7 +11,8 @@ const {
   addReservations,
   getCheapBars,
   getLocationsByLatLon,
-  // fetchSports,
+  getHospitals,
+  getActivities,
 } = require("./handlers");
 
 express()
@@ -42,8 +43,11 @@ express()
   // Fetch recommendations based  on user input from GOOGLE
   .get("/getlocationsbylatlon/:lat/:long/:type/:maxprice", getLocationsByLatLon)
 
-  // Fetch recommendations based  on user input from YELP
-  // .get("/fetchSports/:type/:lat/:long", fetchSports)
+  // Fetch hospitals based  on user input from GOOGLE
+  .get("/gethospitals/:lat/:long", getHospitals)
+
+  // Fetch hospitals based  on user input from GOOGLE
+  .get("/getactivities/:lat/:long/:type", getActivities)
 
   //
   // add new endpoints here ☝️

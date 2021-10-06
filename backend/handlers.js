@@ -23,7 +23,7 @@ const assert = require("assert");
 
 const { v4: uuidv4 } = require("uuid");
 
-// Takes in the lat and lon and returns new restaurants closeby
+// Takes in the lat and lon and returns a variety of restaurants and bars closeby
 const getLocationsByLatLon = async (req, res) => {
   console.log("reqHandler", req.params);
 
@@ -45,30 +45,43 @@ const getLocationsByLatLon = async (req, res) => {
     });
 };
 
-// Use the Yelp API to fetch some sports results
-// const fetchSports = async (req, res) => {
-//   const data = await axios
-//     .get(
-//       `${"https://cors-anywhere.herokuapp.com/"}https://api.yelp.com/v3/businesses/search?categories=${
-//         req.params.type
-//       }&latitude=${req.params.lat}&${req.params.long}`,
-//       {
-//         headers: {
-//           Authorization: `Bearer ${REACT_APP_YELP_API_KEY}`,
-//         },
-//         params: {
-//           term: `${req.params.type}`,
-//         },
-//       }
-//     )
+// Handler to generate hospitals nearby
+const getHospitals = async (req, res) => {
+  console.log("reqHandler", req.params);
 
-//     .then((json) => {
-//       setItems({ items: json.data.businesses });
-//     })
-//     .catch((err) => {
-//       console.log(err);
-//     });
-// };
+  var request = {
+    method: "get",
+    url: `https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${req.params.lat},${req.params.long}&radius=30000&keyword=hospital&key=${REACT_APP_GOOGLE_MAPS_API_KEY}`,
+    headers: {},
+  };
+  return axios(request)
+    .then(function (response) {
+      // console.log("response locations:", response.data);
+      res.status(200).json({ status: 200, data: response.data });
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
+};
+
+// Handler to generate activities nearby
+const getActivities = async (req, res) => {
+  console.log("reqHandler", req.params);
+
+  var request = {
+    method: "get",
+    url: `https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${req.params.lat},${req.params.long}&radius=30000&keyword=${req.params.type}&key=${REACT_APP_GOOGLE_MAPS_API_KEY}`,
+    headers: {},
+  };
+  return axios(request)
+    .then(function (response) {
+      // console.log("response locations:", response.data);
+      res.status(200).json({ status: 200, data: response.data });
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
+};
 
 // Handler to get Night Out Alcohol recommendations CHEAP
 const getCheapBars = async (req, res) => {
@@ -117,5 +130,6 @@ module.exports = {
   addReservations,
   getCheapBars,
   getLocationsByLatLon,
-  // fetchSports,
+  getHospitals,
+  getActivities,
 };

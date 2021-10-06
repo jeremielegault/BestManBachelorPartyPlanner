@@ -2,10 +2,13 @@ import React, { useContext, useState, useEffect } from "react";
 import styled from "styled-components";
 import FormContext from "../Reducers/FormContext";
 import { Link } from "react-router-dom";
+import { GiSiren } from "react-icons/gi";
 
 const Results = () => {
   // Make the form context available in this component
   const formContext = useContext(FormContext);
+
+  // Generate a unique key for each mapped item
   const { v4: uuidv4 } = require("uuid");
 
   // State to store results of Activities fetch
@@ -17,10 +20,13 @@ const Results = () => {
   // State to store results of Bar fetch
   const [bars, setBars] = useState();
 
+  // State to store results of Bar fetch
+  const [hospitals, setHospitals] = useState();
+
   // Use effect to generate activity dynamically
   useEffect(() => {
     fetch(
-      `http://localhost:8000/getlocationsbylatlon/${formContext.state.lat}/${formContext.state.lng}/${formContext.state.activity}/${formContext.state.budget}`,
+      `http://localhost:8000/getactivities/${formContext.state.lat}/${formContext.state.lng}/${formContext.state.activity}`,
       {
         method: "GET",
         headers: {
@@ -83,6 +89,28 @@ const Results = () => {
       });
   }, []);
 
+  // Use effect to generate Hospital list dynamically
+  useEffect(() => {
+    fetch(
+      `http://localhost:8000/gethospitals/${formContext.state.lat}/${formContext.state.lng}/`,
+      {
+        method: "GET",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+      }
+    )
+      .then((res) => res.json())
+      .then((data) => {
+        console.log("Hospitals", data.data.results.slice(0, 3));
+        setHospitals(data.data.results.slice(0, 3));
+      })
+      .catch((err) => {
+        console.log("Error", err);
+      });
+  }, []);
+
   return (
     <Wrapper>
       <h1>Choose an Activity:</h1>
@@ -98,17 +126,18 @@ const Results = () => {
       ) : (
         <p>No Results, sorry!</p>
       )}
-
       {formContext.state.eat === "restaurant" && restos ? (
-        restos.map((resto) => (
-          <SugWrap>
-            <h1>Choose a Restaurant:</h1>
-            <Suggestion key={uuidv4()}>
-              <SugTit>Name:</SugTit> {resto.name} <SugTit>Address:</SugTit>
-              {resto.vicinity}
-            </Suggestion>
-          </SugWrap>
-        ))
+        <>
+          <h1>Choose a Restaurant:</h1>
+          {restos.map((resto) => (
+            <SugWrap>
+              <Suggestion key={uuidv4()}>
+                <SugTit>Name:</SugTit> {resto.name} <SugTit>Address:</SugTit>
+                {resto.vicinity}
+              </Suggestion>
+            </SugWrap>
+          ))}
+        </>
       ) : (
         <>
           {formContext.state.dietaryRes === "omnivore" &&
@@ -145,6 +174,22 @@ const Results = () => {
         ))
       ) : (
         <p>Consider having tea with lemon!</p>
+      )}
+      <h1>Here are the hospitals nearest to your location:</h1>
+
+      <p>Please stay safe out there!</p>
+      {hospitals ? (
+        hospitals.map((hospital) => (
+          <SugWrap>
+            <GiSiren />
+            <Suggestion key={uuidv4()}>
+              <SugTit>Name:</SugTit> {hospital.name} <SugTit>Address:</SugTit>
+              {hospital.vicinity}
+            </Suggestion>
+          </SugWrap>
+        ))
+      ) : (
+        <p>No hospitals found</p>
       )}
     </Wrapper>
   );
