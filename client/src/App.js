@@ -11,7 +11,6 @@ import Confirmation from "./components/Confirmation/Confirmation";
 import Results from "./components/Results/Results";
 import Meatymenu from "./Menus/Meatymenu";
 import Vegmenu from "./Menus/Vegmenu";
-import EmergencyServices from "./components/EmergencyServices/EmergencyServices";
 
 function App() {
   return (
@@ -48,9 +47,6 @@ function App() {
           <Route exact path="/vegmenu">
             <Vegmenu />
           </Route>
-          <Route exact path="/emergencyservices">
-            <EmergencyServices />
-          </Route>
         </Switch>
       </Main>
     </BrowserRouter>
@@ -58,8 +54,8 @@ function App() {
 }
 
 const Main = styled.div`
-  max-height: 1136px;
-  max-width: 640px;
+  /* max-height: 1136px;
+  max-width: 640px; */
   display: flex;
   justify-content: center;
   text-align: center;

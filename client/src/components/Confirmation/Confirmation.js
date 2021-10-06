@@ -2,7 +2,9 @@ import React, { useContext } from "react";
 import styled from "styled-components";
 import FormContext from "../Reducers/FormContext";
 import { Link } from "react-router-dom";
+import { useHistory } from "react-router";
 import moment from "moment";
+import Results from "../Results/Results";
 
 // Page that displays the user input across the app (actual suggestions are on the return page)
 
@@ -10,6 +12,38 @@ import moment from "moment";
 const Confirmation = () => {
   // Access the context that contains every piece of user input
   const formContext = useContext(FormContext);
+
+  const history = useHistory();
+
+  // const { handleSubmit } = React.useContext(FormContext);
+
+  const handleSubmit = () => {
+    fetch("http://localhost:8000/addreservations", {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(formContext.state),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log("IF data", data);
+        if (data.status === 201) {
+          console.log("Success!");
+          history.push("/results");
+        } else {
+          console.log("Error");
+        }
+      });
+  };
+
+  console.log("confirmation data ACTIVITIES", formContext);
+
+  // state.confirmationData.activities.map(([name, vicinity] ) => {
+  // do whatever})
+  // state.confirmationData.activities.map((elem) => {const [name, vicinity] = elem
+  // do whatever})
 
   return (
     <Wrapper>
@@ -59,10 +93,36 @@ const Confirmation = () => {
             {formContext.state.numGuests}
           </P>
         </div>
+        <FormItem>Activity Suggestions: </FormItem>
+        <P>1. {formContext.state.confirmationData.activities[0][0]}</P>
+        <P>2. {formContext.state.confirmationData.activities[1][0]}</P>
+
+        <P>3. {formContext.state.confirmationData.activities[2][0]}</P>
+        <FormItem>Bar Suggestions: </FormItem>
+        <P>1. {formContext.state.confirmationData.bars[0][0]}</P>
+        <P>2. {formContext.state.confirmationData.bars[1][0]}</P>
+
+        <P>3. {formContext.state.confirmationData.bars[2][0]}</P>
+        <FormItem>Restaurant Suggestions: </FormItem>
+        <P>1. {formContext.state.confirmationData.restaurants[0][0]}</P>
+        <P>2. {formContext.state.confirmationData.restaurants[1][0]}</P>
+
+        <P>3. {formContext.state.confirmationData.restaurants[2][0]}</P>
+        <FormItem>Hospitals Nearby: </FormItem>
+        <P>1. {formContext.state.confirmationData.hospitals[0][0]}</P>
+        <P>2. {formContext.state.confirmationData.hospitals[1][0]}</P>
+
+        <P>3. {formContext.state.confirmationData.hospitals[2][0]}</P>
       </ConfirmWrap>
-      <Link to="/results">
-        <Button>Get Recommendations!</Button>
-      </Link>
+      {/* <Link to="/results"> */}
+      <Button
+        onClick={() => {
+          handleSubmit();
+        }}
+      >
+        Get Recommendations!
+      </Button>
+      {/* </Link> */}
     </Wrapper>
   );
 };

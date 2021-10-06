@@ -104,6 +104,7 @@ const getCheapBars = async (req, res) => {
 
 // This function adds one reservation to MongoDB
 const addReservations = async (req, res) => {
+  console.log("add reservations");
   try {
     const client = new MongoClient(REACT_APP_MONGO_URI, options);
 

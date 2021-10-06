@@ -23,6 +23,23 @@ const Results = () => {
   // State to store results of Bar fetch
   const [hospitals, setHospitals] = useState();
 
+  const {
+    state: {
+      resultsActivities,
+      resultsBars,
+      resultsRestaurants,
+      resultsHospitals,
+    },
+    userConfirmed,
+  } = React.useContext(FormContext);
+
+  const [formData, setFormData] = useState({
+    resultsActivities,
+    resultsBars,
+    resultsRestaurants,
+    resultsHospitals,
+  });
+
   // Use effect to generate activity dynamically
   useEffect(() => {
     fetch(
@@ -197,6 +214,22 @@ const Results = () => {
       ) : (
         <p>No hospitals found</p>
       )}
+      <div></div>
+      <Link to="/confirmation">
+        <ConfirmButton
+          onClick={() => {
+            userConfirmed({
+              ...formData,
+              resultsActivities: activities,
+              resultsBars: bars,
+              resultsRestaurants: restos,
+              resultsHospitals: hospitals,
+            });
+          }}
+        >
+          Confirmation
+        </ConfirmButton>
+      </Link>
     </Wrapper>
   );
 };
@@ -216,7 +249,7 @@ const SugWrap = styled.div`
 const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
-  align-items: left;
+  align-items: center;
   flex: 1;
   background-color: #bee0ed;
 `;
@@ -230,6 +263,18 @@ const Button = styled.button`
   border-radius: 5px;
   color: white;
   font-size: 1rem;
+`;
+
+const ConfirmButton = styled.button`
+  height: 45px;
+  width: 120px;
+  font-weight: bold;
+  background-color: #ebab00;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  font-size: 1rem;
+  align-items: center;
 `;
 
 const SugTit = styled.div`

@@ -9,7 +9,7 @@ const What = () => {
   const {
     state: { activity, eat, dietaryRes, drinking, budget },
     receiveFormInfoFromWhat,
-    handleSubmit,
+    // handleSubmit,
   } = React.useContext(FormContext);
 
   // Handle all three pieces (start, end, duration) form data in state
@@ -37,10 +37,12 @@ const What = () => {
       >
         <option defaultValue="None"></option>
         <option value="hiking|sportif|hockey|basketball|soccer">Sports</option>
-        <option value="escaperoom|lasertag|rageroom|axethrowing">
+        <option value="escaperoom|lasertag|rageroom|axethrowing|paintball">
           Experiences
         </option>
-        <option value="boardgame|chess|museum|artgallery">Intellectual</option>
+        <option value="boardgame|chess|museum|artgallery|concert">
+          Intellectual Pursuits
+        </option>
       </DropdownForm>
       <DivLine />
       <FormLabel>How do you wish to dine?</FormLabel>
@@ -81,8 +83,8 @@ const What = () => {
         <option defaultValue="None"></option>
         <option value="cafe">We don't drink</option>
         <option value="bar">Light</option>
-        <option value="bar">Moderate</option>
-        <option value="bar">Heavy</option>
+        <option value="nightclub">Moderate</option>
+        <option value="pub">Heavy</option>
       </DropdownForm>
       <DivLine />
       <FormLabel>What's your budget?</FormLabel>
@@ -100,13 +102,13 @@ const What = () => {
       </DropdownForm>
       <DivLine />
       {console.log("What Form Data", formContext.state)}
-      <Link to="/confirmation">
+      <Link to="/results">
         <Button
           onClick={() => {
             receiveFormInfoFromWhat({
               ...formData,
             });
-            handleSubmit(formContext.state);
+            // handleSubmit(formContext.state);
           }}
         >
           Next

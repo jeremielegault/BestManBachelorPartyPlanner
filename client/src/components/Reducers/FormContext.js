@@ -21,6 +21,11 @@ const initialState = {
   dietaryRes: "",
   drinking: "",
   budget: "",
+  resultsActivities: "",
+  resultsBars: "",
+  resultsRestaurants: "",
+  resultsHospitals: "",
+  confirmationData: {},
 };
 
 function reducer(state, action) {
@@ -72,6 +77,40 @@ function reducer(state, action) {
         budget: action.budget,
       };
     }
+
+    // This receives the resuts that were generated on the results page for the user.
+    case "receive-results": {
+      const confirmationData = {};
+
+      confirmationData.activities = action.resultsActivities.map((activity) => [
+        activity.name,
+        activity.vicinity,
+      ]);
+
+      confirmationData.bars = action.resultsBars.map((bar) => [
+        bar.name,
+        bar.vicinity,
+      ]);
+
+      confirmationData.restaurants = action.resultsRestaurants.map(
+        (restaurant) => [restaurant.name, restaurant.vicinity]
+      );
+
+      confirmationData.hospitals = action.resultsHospitals.map((hospital) => [
+        hospital.name,
+        hospital.vicinity,
+      ]);
+
+      return {
+        ...state,
+        confirmationData,
+        resultsActivities: action.resultsActivities,
+        resultsBars: action.resultsBars,
+        resultsRestaurants: action.resultsRestaurants,
+        resultsHospitals: action.resultsHospitals,
+      };
+    }
+
     default:
       throw new Error(`unrecognized action: ${action.type}`);
   }
@@ -115,24 +154,31 @@ export const FormProvider = ({ children }) => {
     });
   };
 
-  const handleSubmit = () => {
-    fetch("/addreservations", {
-      method: "POST",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(state),
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        if (data.status === 201) {
-          console.log("Success!");
-        } else {
-          console.log("Error");
-        }
-      });
+  const userConfirmed = (data) => {
+    dispatch({
+      type: "receive-results",
+      ...data,
+    });
   };
+
+  // const handleSubmit = () => {
+  //   fetch("/addreservations", {
+  //     method: "POST",
+  //     headers: {
+  //       Accept: "application/json",
+  //       "Content-Type": "application/json",
+  //     },
+  //     body: JSON.stringify(state),
+  //   })
+  //     .then((res) => res.json())
+  //     .then((data) => {
+  //       if (data.status === 201) {
+  //         console.log("Success!");
+  //       } else {
+  //         console.log("Error");
+  //       }
+  //     });
+  // };
 
   return (
     <FormContext.Provider
@@ -143,7 +189,7 @@ export const FormProvider = ({ children }) => {
         receiveFormInfoFromWhat,
         receiveBestManInfo,
         receiveLatLong,
-        handleSubmit,
+        userConfirmed,
       }}
     >
       {children}
