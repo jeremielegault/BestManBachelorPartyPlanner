@@ -43,6 +43,11 @@ const HomePageWrap = styled.div`
   flex-direction: column;
   align-items: center;
   background-color: #bee0ed;
+  justify-content: center;
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+  height: 100vh;
 `;
 
 const LoginButtons = styled.div``;

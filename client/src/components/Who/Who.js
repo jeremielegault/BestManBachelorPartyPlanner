@@ -18,6 +18,7 @@ const Who = () => {
       <PageTitle>Who?</PageTitle>
       <form>
         <FormLabel>Name of the groom:</FormLabel>
+        <DivLine />
         <input
           type="text"
           value={formData.groomName}
@@ -30,6 +31,7 @@ const Who = () => {
 
         <DivLine />
         <FormLabel>Number of guests:</FormLabel>
+        <DivLine />
         <input
           type="number"
           value={formData.numGuests}
@@ -61,12 +63,18 @@ const WhoWrap = styled.div`
   flex-direction: column;
   align-items: center;
   background-color: #bee0ed;
+  justify-content: center;
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+  height: 100vh;
+  /* width: 100vw; */
 `;
 
 const DivLine = styled.div`
   border: 1px;
-  margin: 5px 0 5px;
   width: 500px;
+  padding-top: 30px;
 `;
 
 const FormLabel = styled.label`

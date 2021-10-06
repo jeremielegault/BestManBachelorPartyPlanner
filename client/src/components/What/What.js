@@ -120,6 +120,7 @@ const What = () => {
 
 const FormLabel = styled.label`
   font-size: 1rem;
+  padding-bottom: 15px;
 `;
 
 const PageTitle = styled.h1`
@@ -132,6 +133,9 @@ const WhatWrap = styled.div`
   flex-direction: column;
   align-items: center;
   background-color: #bee0ed;
+  height: 100vh;
+  text-align: center;
+  justify-content: center;
 `;
 
 const DivLine = styled.div`

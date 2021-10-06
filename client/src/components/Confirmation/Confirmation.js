@@ -120,7 +120,7 @@ const Confirmation = () => {
           handleSubmit();
         }}
       >
-        Get Recommendations!
+        Save to database!
       </Button>
       {/* </Link> */}
     </Wrapper>

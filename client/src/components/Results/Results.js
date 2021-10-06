@@ -130,7 +130,9 @@ const Results = () => {
 
   return (
     <Wrapper>
-      <h1>Choose an Activity:</h1>
+      <>
+        <h1>Choose an Activity:</h1>
+      </>
       {/* If the user made an activity selection, render a list of activities relevant to their preferences  */}
       {activities ? (
         activities.map((activity) => (
@@ -252,6 +254,11 @@ const Wrapper = styled.div`
   align-items: center;
   flex: 1;
   background-color: #bee0ed;
+  height: 170vh;
+  justify-content: center;
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
 `;
 
 const Button = styled.button`
@@ -275,6 +282,7 @@ const ConfirmButton = styled.button`
   color: white;
   font-size: 1rem;
   align-items: center;
+  margin-top: 50px;
 `;
 
 const SugTit = styled.div`

@@ -108,6 +108,11 @@ const WhenWrap = styled.div`
   flex-direction: column;
   align-items: center;
   background-color: #bee0ed;
+  height: 100vh;
+  justify-content: center;
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
 `;
 
 const Duration = styled.div`
@@ -133,6 +138,7 @@ const StyledInput = styled.p`
   color: white;
   font-weight: bold;
   text-align: center;
+  justify-content: center;
 `;
 
 export default When;

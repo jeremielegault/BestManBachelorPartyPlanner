@@ -54,12 +54,6 @@ function App() {
 }
 
 const Main = styled.div`
-  /* max-height: 1136px;
-  max-width: 640px; */
-  display: flex;
-  justify-content: center;
-  text-align: center;
-  margin-left: auto;
-  margin-right: auto;
+  height: 100vh;
 `;
 export default App;

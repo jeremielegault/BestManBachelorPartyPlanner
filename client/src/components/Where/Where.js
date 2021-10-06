@@ -79,6 +79,11 @@ const WhereWrap = styled.div`
   flex-direction: column;
   align-items: center;
   background-color: #bee0ed;
+  height: 100vh;
+  justify-content: center;
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
 `;
 const Button = styled.button`
   height: 45px;
