@@ -3,6 +3,8 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 import FormContext from "../Reducers/FormContext";
 
+// This page contains a menu that allows the user to select activities, choose how they would like to handle eating, whether they have dietary restrictions, quantify their drinking habits and set their budget for the party.
+
 const What = () => {
   const {
     state: { activity, eat, dietaryRes, drinking, budget },
@@ -20,8 +22,6 @@ const What = () => {
   });
 
   const formContext = useContext(FormContext);
-
-  // console.log("Form Context!", activity, eat, dietaryRes, drinking, budget);
 
   return (
     <WhatWrap>
@@ -129,9 +129,7 @@ const WhatWrap = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  /* background-color: #84d3fb; */
   background-color: #bee0ed;
-  /* font-weight: bold; */
 `;
 
 const DivLine = styled.div`
@@ -141,8 +139,6 @@ const DivLine = styled.div`
 `;
 
 const DropdownForm = styled.select`
-  /* background-color: #ebab00; */
-  /* background-color: #af87fd; */
   background-color: #87a1c6;
   border: none;
   border-radius: 5px;
@@ -151,7 +147,6 @@ const DropdownForm = styled.select`
 `;
 
 const Button = styled.button`
-  /* background-color: #af87fd; */
   height: 35px;
   width: 60px;
   font-weight: bold;

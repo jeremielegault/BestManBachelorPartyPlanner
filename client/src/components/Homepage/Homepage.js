@@ -2,6 +2,8 @@ import React from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 
+// First page that the user sees after logging in that explains how to progress through the app.
+
 const Homepage = () => {
   return (
     <HomePageWrap>
@@ -17,6 +19,7 @@ const Homepage = () => {
     </HomePageWrap>
   );
 };
+
 const BodyText = styled.p`
   font-size: 1rem;
 `;
@@ -34,12 +37,10 @@ const HomePageWrap = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  /* background-color: #84d3fb; */
   background-color: #bee0ed;
-  /* font-weight: bold; */
 `;
+
 const Button = styled.button`
-  /* background-color: #af87fd; */
   height: 35px;
   width: 70px;
   font-weight: bold;

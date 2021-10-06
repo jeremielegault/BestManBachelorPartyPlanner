@@ -2,6 +2,8 @@ import React from "react";
 import styled from "styled-components";
 import { useAuth0 } from "@auth0/auth0-react";
 
+// Logout button using Auth0
+
 const LogoutButton = () => {
   const { logout, isAuthenticated } = useAuth0();
 
@@ -9,7 +11,6 @@ const LogoutButton = () => {
 };
 
 const Button = styled.button`
-  /* background-color: #af87fd; */
   height: 35px;
   width: 90px;
   font-weight: bold;

@@ -4,6 +4,8 @@ import styled from "styled-components";
 import { Link } from "react-router-dom";
 import FormContext from "../../Reducers/FormContext";
 
+// User's Photo and Name are displayed on the main page of the app once they are logged in. Here is where the "next" button is conditionally rendered based on whether the user has logged in or not.
+
 const Profile = () => {
   const { user, isAuthenticated } = useAuth0();
 
@@ -12,6 +14,8 @@ const Profile = () => {
     const userData = user;
     localStorage.setItem("User", JSON.stringify(userData));
   }
+
+  // Put the user's name into context
   const { receiveBestManInfo } = React.useContext(FormContext);
 
   return (
@@ -46,7 +50,6 @@ const ProfileText = styled.h2`
 `;
 
 const Button = styled.button`
-  /* background-color: #af87fd; */
   height: 35px;
   width: 70px;
   font-weight: bold;

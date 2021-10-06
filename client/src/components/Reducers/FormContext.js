@@ -2,8 +2,10 @@ import React from "react";
 
 export const FormContext = React.createContext();
 
+// This is to set a unique reservation ID for each user's reservation.
 const { v4: uuidv4 } = require("uuid");
 
+// This is what the object that contains all the user input looks like.
 const initialState = {
   _id: uuidv4(),
   bestMan: "",
@@ -23,8 +25,8 @@ const initialState = {
 
 function reducer(state, action) {
   switch (action.type) {
+    // This sets the start date, end date and duration of the user's party
     case "receive-form-info-from-form": {
-      console.log("Taco", action);
       return {
         ...state,
         start: action.start,
@@ -32,6 +34,8 @@ function reducer(state, action) {
         duration: action.duration,
       };
     }
+
+    // This sets the latitude and longitude of the user
     case "receive-lat-long": {
       return {
         ...state,
@@ -39,12 +43,16 @@ function reducer(state, action) {
         lng: action.lng,
       };
     }
+
+    // This takes the name of the user that has logged in and puts it in the form
     case "receive-best-man-info": {
       return {
         ...state,
         bestMan: action.bestMan,
       };
     }
+
+    // This receives the information that the user has put in with regards to the groom's name and the number of guests
     case "receive-form-info-from-who": {
       return {
         ...state,
@@ -52,6 +60,8 @@ function reducer(state, action) {
         numGuests: action.numGuests,
       };
     }
+
+    // This receives the information that the user has put in on the WHAT page. This will generate the results afterwards.
     case "receive-form-info-from-what": {
       return {
         ...state,

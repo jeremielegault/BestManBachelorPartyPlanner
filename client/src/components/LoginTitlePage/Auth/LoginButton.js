@@ -2,6 +2,8 @@ import React from "react";
 import styled from "styled-components";
 import { useAuth0 } from "@auth0/auth0-react";
 
+// Login button using Auth0
+
 const LoginButton = () => {
   const { loginWithRedirect, isAuthenticated } = useAuth0();
 
@@ -13,7 +15,6 @@ const LoginButton = () => {
 };
 
 const Button = styled.button`
-  /* background-color: #af87fd; */
   height: 35px;
   width: 70px;
   font-weight: bold;

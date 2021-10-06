@@ -3,8 +3,9 @@ import styled from "styled-components";
 import { Link } from "react-router-dom";
 import FormContext from "../Reducers/FormContext";
 
+// Here the user gives permission to use their latitude and longitude. This is so crucial that the ability to continue navigating through the app is dependent on receiving this info.
+
 const Where = () => {
-  // Until const formdata look at this later
   const { receiveLatLong } = React.useContext(FormContext);
 
   const [lat, setLat] = useState(null);
@@ -77,12 +78,9 @@ const WhereWrap = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  /* background-color: #84d3fb; */
   background-color: #bee0ed;
-  /* font-weight: bold; */
 `;
 const Button = styled.button`
-  /* background-color: #af87fd; */
   height: 45px;
   width: 90px;
   font-weight: bold;
@@ -94,7 +92,6 @@ const Button = styled.button`
 `;
 
 const NextButton = styled.button`
-  /* background-color: #af87fd; */
   height: 35px;
   width: 70px;
   font-weight: bold;
@@ -106,5 +103,3 @@ const NextButton = styled.button`
 `;
 
 export default Where;
-
-// .get("/getlatlon", getLatLon)

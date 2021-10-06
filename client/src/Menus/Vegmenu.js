@@ -1,13 +1,16 @@
-import React, { useContext, useState, useEffect } from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import FormContext from "../components/Reducers/FormContext";
+
+// If the user has selected "Vegan" or "Vegetarian" for the dietary restrictions, this will render a menu based on the number of guests and duration of a party. The menu is vegan for simplicity's sake, because all that is vegan is vegetarian, but not all that is vegetarian is vegan.
 
 const Vegmenu = () => {
   const formContext = useContext(FormContext);
 
   const num = formContext.state.numGuests;
 
+  // Typically bachelor parties start in the evening, so you need one less breakfast than other meals.
   const breakNum = formContext.state.duration - 1;
 
   const length = formContext.state.duration;
@@ -18,6 +21,7 @@ const Vegmenu = () => {
       <p>
         Choosing to cook for yourselves can be a great way to cut down on costs!
       </p>
+      {/* Is it for more than one evening? */}
       {length > 1 ? (
         <>
           <EachMealWrapper>
@@ -70,6 +74,7 @@ const Vegmenu = () => {
           </EachMealWrapper>
         </>
       ) : (
+        // The party is a single evening
         <>
           <EachMealWrapper>
             <Subtitles>Dinner:</Subtitles>

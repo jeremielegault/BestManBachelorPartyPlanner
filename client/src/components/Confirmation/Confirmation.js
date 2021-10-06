@@ -4,12 +4,12 @@ import FormContext from "../Reducers/FormContext";
 import { Link } from "react-router-dom";
 import moment from "moment";
 
+// Page that displays the user input across the app (actual suggestions are on the return page)
+
 // Confirmation Component
 const Confirmation = () => {
-  // Access the context
+  // Access the context that contains every piece of user input
   const formContext = useContext(FormContext);
-
-  console.log("Form Context", formContext.state);
 
   return (
     <Wrapper>
@@ -96,7 +96,6 @@ const FormItem = styled.span`
 `;
 
 const Button = styled.button`
-  /* background-color: #af87fd; */
   height: 60px;
   width: 160px;
   font-weight: bold;

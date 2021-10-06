@@ -45,7 +45,7 @@ const Results = () => {
       });
   }, []);
 
-  // Use effect to generate restaurant list dynamically
+  // Use effect to generate restaurant list dynamically IF they choose to eat at a restaurant
   useEffect(() => {
     fetch(
       `http://localhost:8000/getlocationsbylatlon/${formContext.state.lat}/${formContext.state.lng}/${formContext.state.eat}/${formContext.state.budget}`,
@@ -67,7 +67,7 @@ const Results = () => {
       });
   }, []);
 
-  // Use effect to generate Bar list dynamically
+  // Use effect to generate Bar list dynamically if they say that they drink!
   useEffect(() => {
     fetch(
       `http://localhost:8000/getlocationsbylatlon/${formContext.state.lat}/${formContext.state.lng}/${formContext.state.drinking}/${formContext.state.budget}`,
@@ -114,6 +114,7 @@ const Results = () => {
   return (
     <Wrapper>
       <h1>Choose an Activity:</h1>
+      {/* If the user made an activity selection, render a list of activities relevant to their preferences  */}
       {activities ? (
         activities.map((activity) => (
           <SugWrap>
@@ -124,8 +125,10 @@ const Results = () => {
           </SugWrap>
         ))
       ) : (
+        // If the user did not select an activity preference, don't render anything
         <p>No Results, sorry!</p>
       )}
+      {/* If the user selected "restaurants", this will render a list of suggestions for restaurants based on their location and budget */}
       {formContext.state.eat === "restaurant" && restos ? (
         <>
           <h1>Choose a Restaurant:</h1>
@@ -139,6 +142,7 @@ const Results = () => {
           ))}
         </>
       ) : (
+        // If the user selected DIY, and they selected Omnivore as their dietary restriction, they will receive a menu/grocery list of food to buy to feed their party. This will in turn be calculated based on the amount of guests at their party and the duration of the party.
         <>
           {formContext.state.dietaryRes === "omnivore" &&
           formContext.state.eat === "DIY" ? (
@@ -150,6 +154,7 @@ const Results = () => {
               </Link>
             </>
           ) : (
+            // If the user selected DIY, and they selected Vegan or Vegetarian as their dietary restriction, they will receive a menu/grocery list of food to buy to feed their party. This will in turn be calculated based on the amount of guests at their party and the duration of the party.
             <>
               <h1>Menu:</h1>
               <h2>
@@ -163,6 +168,7 @@ const Results = () => {
         </>
       )}
       <h1>Choose a Drinking Establishment:</h1>
+      {/* If the user chose light-heavy drinking as their drinking option, they will receive a list of bars clsoe to them based on their budget. If they chose we don't drink it will be cafes.*/}
       {bars ? (
         bars.map((bar) => (
           <SugWrap>
@@ -175,8 +181,8 @@ const Results = () => {
       ) : (
         <p>Consider having tea with lemon!</p>
       )}
+      {/* Bachelor parties can be dangerous. The user will receive a list of hospitals close to them.  */}
       <h1>Here are the hospitals nearest to your location:</h1>
-
       <p>Please stay safe out there!</p>
       {hospitals ? (
         hospitals.map((hospital) => (
@@ -216,7 +222,6 @@ const Wrapper = styled.div`
 `;
 
 const Button = styled.button`
-  /* background-color: #af87fd; */
   height: 45px;
   width: 90px;
   font-weight: bold;

@@ -1,7 +1,9 @@
-import React, { useContext, useState, useEffect } from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import FormContext from "../components/Reducers/FormContext";
+
+// If the user has selected "Omnivore" for the dietary restrictions, this will render a menu based on the number of guests and duration of a party.
 
 const Meatymenu = () => {
   const formContext = useContext(FormContext);
@@ -18,6 +20,7 @@ const Meatymenu = () => {
       <p>
         Choosing to cook for yourselves can be a great way to cut down on costs!
       </p>
+      {/* Is it for more than one evening? */}
       {length > 1 ? (
         <>
           <EachMealWrapper>
@@ -71,6 +74,7 @@ const Meatymenu = () => {
         </>
       ) : (
         <>
+          {/* If it is just for a single evening */}
           <EachMealWrapper>
             <Subtitles>Dinner:</Subtitles> <li>{num * 1} burgers and buns</li>
             <li>{num * 1} hot dogs and buns</li>

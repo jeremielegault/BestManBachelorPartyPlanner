@@ -2,7 +2,8 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import FormContext from "../Reducers/FormContext";
-// groomName  numGuests
+
+// Here the user will input the groom's name and manually input the amount of guests that will be attending their party.
 
 const Who = () => {
   const {
@@ -26,7 +27,6 @@ const Who = () => {
           }}
           placeholder="Write groom's name here"
         />
-        {console.log("Form Data", formData)}
 
         <DivLine />
         <FormLabel>Number of guests:</FormLabel>
@@ -77,18 +77,7 @@ const PageTitle = styled.h1`
   font-size: 1.802rem;
 `;
 
-const DropdownForm = styled.select`
-  /* background-color: #ebab00; */
-  /* background-color: #af87fd; */
-  background-color: #87a1c6;
-  border: none;
-  border-radius: 5px;
-  color: white;
-  font-weight: bold;
-`;
-
 const Button = styled.button`
-  /* background-color: #af87fd; */
   height: 35px;
   width: 60px;
   font-weight: bold;

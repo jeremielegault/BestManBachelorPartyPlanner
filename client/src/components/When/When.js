@@ -5,6 +5,8 @@ import { Link } from "react-router-dom";
 import "react-datepicker/dist/react-datepicker.css";
 import FormContext from "../Reducers/FormContext";
 
+// Here the user will select the start and end date of their party. This will in turn automatically set the duration of the event.
+
 const When = () => {
   const {
     state: { start, end },
@@ -105,7 +107,6 @@ const WhenWrap = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  /* background-color: #84d3fb; */
   background-color: #bee0ed;
 `;
 
@@ -126,8 +127,6 @@ const NextButton = styled.button`
 `;
 
 const StyledInput = styled.p`
-  /* background-color: #ebab00; */
-  /* background-color: #af87fd; */
   background-color: #87a1c6;
   border: none;
   border-radius: 5px;
