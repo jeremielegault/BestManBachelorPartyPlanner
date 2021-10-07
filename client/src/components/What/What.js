@@ -101,7 +101,6 @@ const What = () => {
         <option value="4">$$$ 350+ a person</option>
       </DropdownForm>
       <DivLine />
-      {console.log("What Form Data", formContext.state)}
       <Link to="/results">
         <Button
           onClick={() => {

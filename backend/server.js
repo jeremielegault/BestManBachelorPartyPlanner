@@ -13,6 +13,7 @@ const {
   getLocationsByLatLon,
   getHospitals,
   getActivities,
+  getSingleReservation,
 } = require("./handlers");
 
 express()
@@ -48,6 +49,9 @@ express()
 
   // Fetch hospitals based  on user input from GOOGLE
   .get("/getactivities/:lat/:long/:type", getActivities)
+
+  // Get single reservation based on ID
+  .get("/getreservation/:id", getSingleReservation)
 
   //
   // add new endpoints here ☝️

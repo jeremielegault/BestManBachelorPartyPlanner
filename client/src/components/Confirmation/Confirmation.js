@@ -28,22 +28,14 @@ const Confirmation = () => {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log("IF data", data);
         if (data.status === 201) {
           console.log("Success!");
-          history.push("/results");
+          history.push("/thankyou");
         } else {
           console.log("Error");
         }
       });
   };
-
-  console.log("confirmation data ACTIVITIES", formContext);
-
-  // state.confirmationData.activities.map(([name, vicinity] ) => {
-  // do whatever})
-  // state.confirmationData.activities.map((elem) => {const [name, vicinity] = elem
-  // do whatever})
 
   return (
     <Wrapper>

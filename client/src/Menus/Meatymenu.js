@@ -108,7 +108,7 @@ const Wrapper = styled.div`
   align-items: center;
   flex: 1;
   background-color: #bee0ed;
-  height: 100vh;
+  height: 150vh;
 `;
 
 const Subtitles = styled.h2`
@@ -123,6 +123,8 @@ const EachMealWrapper = styled.div`
   margin-right: 3px;
   margin-top: 2px;
   width: 300px;
+  list-style-type: none;
+  padding-left: 5px;
 `;
 const Button = styled.button`
   height: 45px;

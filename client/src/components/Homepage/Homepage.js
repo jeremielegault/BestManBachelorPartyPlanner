@@ -16,6 +16,11 @@ const Homepage = () => {
       <Link to="/where">
         <Button>Next</Button>
       </Link>
+      <PageSubtitle>OR</PageSubtitle>
+      <BodyText>Check on an old reservation!</BodyText>
+      <Link to="/oldres">
+        <OldButton>Welcome Back!</OldButton>
+      </Link>
     </HomePageWrap>
   );
 };
@@ -55,6 +60,17 @@ const Button = styled.button`
   border-radius: 5px;
   color: white;
   font-size: 1.266rem;
+`;
+
+const OldButton = styled.button`
+  height: 35px;
+  width: 70px;
+  font-weight: bold;
+  background-color: #ebab00;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  font-size: 0.79rem;
 `;
 
 export default Homepage;

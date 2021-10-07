@@ -8,8 +8,6 @@ const { REACT_APP_MONGO_URI } = process.env;
 
 const { REACT_APP_GOOGLE_MAPS_API_KEY } = process.env;
 
-const { REACT_APP_YELP_API_KEY } = process.env;
-
 const options = {
   useNewUrlParser: true,
   useUnifiedTopology: true,
@@ -25,11 +23,6 @@ const { v4: uuidv4 } = require("uuid");
 
 // Takes in the lat and lon and returns a variety of restaurants and bars closeby
 const getLocationsByLatLon = async (req, res) => {
-  console.log("reqHandler", req.params);
-
-  console.log("API", REACT_APP_GOOGLE_MAPS_API_KEY);
-  console.log("MongoURI", REACT_APP_MONGO_URI);
-
   var request = {
     method: "get",
     url: `https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${req.params.lat},${req.params.long}&radius=30000&keyword=${req.params.type}&maxprice=${req.params.maxprice}&key=${REACT_APP_GOOGLE_MAPS_API_KEY}`,
@@ -37,7 +30,6 @@ const getLocationsByLatLon = async (req, res) => {
   };
   return axios(request)
     .then(function (response) {
-      // console.log("response locations:", response.data);
       res.status(200).json({ status: 200, data: response.data });
     })
     .catch(function (error) {
@@ -47,8 +39,6 @@ const getLocationsByLatLon = async (req, res) => {
 
 // Handler to generate hospitals nearby
 const getHospitals = async (req, res) => {
-  console.log("reqHandler", req.params);
-
   var request = {
     method: "get",
     url: `https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${req.params.lat},${req.params.long}&radius=30000&keyword=hospital&key=${REACT_APP_GOOGLE_MAPS_API_KEY}`,
@@ -56,7 +46,6 @@ const getHospitals = async (req, res) => {
   };
   return axios(request)
     .then(function (response) {
-      // console.log("response locations:", response.data);
       res.status(200).json({ status: 200, data: response.data });
     })
     .catch(function (error) {
@@ -66,8 +55,6 @@ const getHospitals = async (req, res) => {
 
 // Handler to generate activities nearby
 const getActivities = async (req, res) => {
-  console.log("reqHandler", req.params);
-
   var request = {
     method: "get",
     url: `https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${req.params.lat},${req.params.long}&radius=30000&keyword=${req.params.type}&key=${REACT_APP_GOOGLE_MAPS_API_KEY}`,
@@ -75,7 +62,6 @@ const getActivities = async (req, res) => {
   };
   return axios(request)
     .then(function (response) {
-      // console.log("response locations:", response.data);
       res.status(200).json({ status: 200, data: response.data });
     })
     .catch(function (error) {
@@ -85,8 +71,6 @@ const getActivities = async (req, res) => {
 
 // Handler to get Night Out Alcohol recommendations CHEAP
 const getCheapBars = async (req, res) => {
-  console.log("It worked");
-
   var config = {
     method: "get",
     url: "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=45.452492799999995,-73.5936512&radius=15000&type=bar&maxprice=2&key=AIzaSyAHjbhtGrQnSNHas2LvKIvvv2-UOeu0bfT6vrvC0",
@@ -104,7 +88,6 @@ const getCheapBars = async (req, res) => {
 
 // This function adds one reservation to MongoDB
 const addReservations = async (req, res) => {
-  console.log("add reservations");
   try {
     const client = new MongoClient(REACT_APP_MONGO_URI, options);
 
@@ -127,10 +110,31 @@ const addReservations = async (req, res) => {
   }
 };
 
+const getSingleReservation = async (req, res) => {
+  const client = await new MongoClient(REACT_APP_MONGO_URI, options);
+
+  await client.connect();
+
+  const db = client.db("BestManBachPlanner");
+
+  // use id from mongodb
+  const _id = req.params.id;
+
+  await db.collection("fullFormData").findOne({ _id });
+
+  await db.collection("fullFormData").findOne({ _id }, (err, result) => {
+    result
+      ? res.status(200).json({ status: 200, _id, data: result })
+      : res.status(404).json({ status: 404, _id, data: "Not Found" });
+    client.close();
+  });
+};
+
 module.exports = {
   addReservations,
   getCheapBars,
   getLocationsByLatLon,
   getHospitals,
   getActivities,
+  getSingleReservation,
 };

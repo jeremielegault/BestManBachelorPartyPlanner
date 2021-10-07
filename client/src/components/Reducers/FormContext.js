@@ -161,25 +161,6 @@ export const FormProvider = ({ children }) => {
     });
   };
 
-  // const handleSubmit = () => {
-  //   fetch("/addreservations", {
-  //     method: "POST",
-  //     headers: {
-  //       Accept: "application/json",
-  //       "Content-Type": "application/json",
-  //     },
-  //     body: JSON.stringify(state),
-  //   })
-  //     .then((res) => res.json())
-  //     .then((data) => {
-  //       if (data.status === 201) {
-  //         console.log("Success!");
-  //       } else {
-  //         console.log("Error");
-  //       }
-  //     });
-  // };
-
   return (
     <FormContext.Provider
       value={{

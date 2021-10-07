@@ -29,36 +29,36 @@ const When = () => {
       <PageSubtitle>Select the date(s)</PageSubtitle>
 
       <BodyText>Start Date</BodyText>
-      <DatePicker
-        selected={formData.start}
-        onChange={(date) => {
-          setFormData((curr) => {
-            return {
-              ...curr,
-              start: date,
-              duration: getDuration(date, curr.end),
-            };
-          });
-        }}
-        required
-      />
-      {console.log("Form Data", formData)}
+      <Center>
+        <DatePicker
+          selected={formData.start}
+          onChange={(date) => {
+            setFormData((curr) => {
+              return {
+                ...curr,
+                start: date,
+                duration: getDuration(date, curr.end),
+              };
+            });
+          }}
+          required
+        />
 
-      <BodyText>End Date</BodyText>
-      <DatePicker
-        selected={formData.end}
-        onChange={(date) => {
-          setFormData((curr) => {
-            return {
-              ...curr,
-              end: date,
-              duration: getDuration(curr.start, date),
-            };
-          });
-        }}
-        required
-      />
-
+        <BodyText>End Date</BodyText>
+        <DatePicker
+          selected={formData.end}
+          onChange={(date) => {
+            setFormData((curr) => {
+              return {
+                ...curr,
+                end: date,
+                duration: getDuration(curr.start, date),
+              };
+            });
+          }}
+          required
+        />
+      </Center>
       {/* User selects the number of days */}
       <Duration>
         <label>
@@ -117,6 +117,10 @@ const WhenWrap = styled.div`
 
 const Duration = styled.div`
   padding-top: 20px;
+`;
+
+const Center = styled.div`
+  justify-content: center;
 `;
 
 const NextButton = styled.button`

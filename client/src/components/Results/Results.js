@@ -76,7 +76,6 @@ const Results = () => {
     )
       .then((res) => res.json())
       .then((data) => {
-        console.log("response in RESULTS then", data.data.results.slice(0, 3));
         setRestos(data.data.results.slice(0, 3));
       })
       .catch((err) => {
@@ -98,7 +97,6 @@ const Results = () => {
     )
       .then((res) => res.json())
       .then((data) => {
-        console.log("response in RESULTS then", data.data.results.slice(0, 3));
         setBars(data.data.results.slice(0, 3));
       })
       .catch((err) => {
@@ -120,7 +118,6 @@ const Results = () => {
     )
       .then((res) => res.json())
       .then((data) => {
-        console.log("Hospitals", data.data.results.slice(0, 3));
         setHospitals(data.data.results.slice(0, 3));
       })
       .catch((err) => {
@@ -254,7 +251,7 @@ const Wrapper = styled.div`
   align-items: center;
   flex: 1;
   background-color: #bee0ed;
-  height: 170vh;
+  height: 270vh;
   justify-content: center;
   text-align: center;
   margin-left: auto;

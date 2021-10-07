@@ -11,6 +11,8 @@ import Confirmation from "./components/Confirmation/Confirmation";
 import Results from "./components/Results/Results";
 import Meatymenu from "./Menus/Meatymenu";
 import Vegmenu from "./Menus/Vegmenu";
+import OldRes from "./components/Confirmation/OldRes";
+import ThankYou from "./components/Confirmation/ThankYou";
 
 function App() {
   return (
@@ -46,6 +48,12 @@ function App() {
           </Route>
           <Route exact path="/vegmenu">
             <Vegmenu />
+          </Route>
+          <Route exact path="/oldres">
+            <OldRes />
+          </Route>
+          <Route exact path="/thankyou">
+            <ThankYou />
           </Route>
         </Switch>
       </Main>
